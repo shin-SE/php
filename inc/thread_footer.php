@@ -13,8 +13,8 @@
 			<div class="menu-right">
 				<h3>メニュー</h3>
 				<ul class="foot-right">
-                    <li><a href="thread_top.php">スレッド一覧</a></li>
-                    <li><a href="profile.php">プロフィール</a></li>
+                    <li><a href="../thread_top.php">スレッド一覧</a></li>
+                    <li><a href="../profile.php">プロフィール</a></li>
 				</ul>
 			</div>
 			</div>
