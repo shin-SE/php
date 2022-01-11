@@ -1,1 +1,602 @@
+@charset "utf-8";
 
+/** ------ 全ページ ------ **/
+html, body {
+  height  : 100%;     /*高さ  */
+  margin  : 0%;      /*マージン  */
+}
+body {
+  width             : 100%;       /*横幅  */
+  padding-top       : 100px;      /*高さ調整  */
+  background-color  : #333;     /*背景色  */
+  color             : white;    /*文字色  */
+}
+wrapper{
+	min-height    : 100%;
+	margin-bottom : -70px;
+  /* フッタの高さと等しいネガティブマージン */
+	/* また最後の子要素の潜在的なマージンとしても機能 */
+}
+h1,h2,h3,h4,h5,p{
+	color : white;    /*文字色  */
+}
+p{
+	font-size : 13px;    /*文字サイズ  */
+}
+a{
+  text-decoration : none;     /*下線なし  */
+  color           : white;    /*文字色  */
+  font-size       : 15px;     /*文字サイズ  */
+}
+a:hover{
+  color : deeppink; /*押下された際の文字色  */
+}
+article{
+  position  : relative;
+  left      : 25%;    /*左からのポジション  */
+  width     : 800px;  /*横幅  */
+  float     : left;
+}
+section{
+	padding       : 40px 0 30px;  /*パディング  */
+	width         : 90%;         /*横幅  */
+	margin-left   : auto;       /*マージン（左）  */
+	margin-right  : auto;       /*マージン（右）  */
+}
+aside {
+  position  : relative; /*右からのポジション  */
+  top       : 20%;
+  left      : 35%;
+  width     : 180px;  /*横幅  */
+  float     : left;
+}
+.form-group{
+	text-align  : center;            /*文字配置  */
+	padding-top : 1.5rem !important;  /*パディング（高さ）  */
+}
+
+#text{
+    width         : 50%;              /*親要素いっぱい広げる*/
+    padding       : 15px 20px;          /*ボックスを大きくする*/
+    font-size     : 16px;             /*文字サイズ  */
+    border-radius : 3px;              /*ボックス角の丸み*/
+    border        : 2px solid #ddd; /*枠線*/
+    box-sizing    : border-box;     /*横幅の解釈をpadding, borderまでとする*/
+}
+textarea {                  /*テキストエリア*/
+  resize          : none;   /*テキストサイズの変更なし*/
+  width           : 100%;   /*横幅*/
+  height          : 200px;  /*高さ*/
+  font-size       : 17px;   /*文字サイズ*/
+  border-radius   : 2px;    /*線の太さ*/
+}
+hr {                                  /*横線*/
+  margin-top    : 34px;                /*マージントップ*/
+  border-top    : 3px dotted #FFF;  /*線上*/ 
+}
+.postbox{                           /*投稿エリア*/
+  position            : relative; 
+  left                : -7%;
+  width               : 100%;
+  margin              : 20px;
+  padding             : 15px 40px;
+  background-color    :#424242;
+  border-radius       : 13px ; 
+}
+
+/** ------ 全ページ end ------ **/
+
+
+
+/** ------ 追加したもの ------ **/
+td.example1 { 
+  text-align    : left;
+}
+.form-group {
+  text-align    : center;
+  padding-top   : 1.5rem !important;
+}
+section.question h1{
+  
+  width: 500px;
+}
+section.question h3{
+  width: 650px;
+  margin: 0px;
+  padding: 0;
+  margin-bottom: 25px;
+  
+}
+.question {
+  position: relative;
+  left: 25%;
+  right: 25%;
+  padding: 0;
+  margin: 0;
+  margin-right: 0;
+  width: 60%;
+}
+
+/** ------ 追加したもの end ------ **/
+
+
+
+/** ------ thead 関連 ------ **/
+.pill {   /*横線（白透明）*/
+  height          : 0px;
+  border-radius   : 2px;
+  border          : 2px solid hsl(0, 0%, 60%);
+  width           : 100%;
+  margin-bottom   : 5px;
+}
+.ill {    /*親元div*/
+  position    : relative;
+}
+.itt{   /*スレッド内容の枠*/
+  border-radius   : 10px;
+  background      : white; 
+  margin   : 10px;
+  font-size       : 100%; 
+  color           : #212529;
+  padding         : 20px;
+}
+.itt_1 {
+  margin: 10px;
+  border-radius: 10px;
+  background: #00ff7f;
+  padding: 20px;
+}
+.btn_itt {
+  background-color: #00ff7f;
+  border-color: #00ff7f;
+  border:solid thick #00ff7f;
+  text-decoration:underline;
+  cursor: pointer;
+  cursor: hand;
+}
+.btn_itt i{
+  margin-right: 15px;
+}
+.inner_itt{
+  display: flex;
+  justify-content: space-evenly;
+}
+.lll {                      /*付箋の親元div*/
+  margin-top    : 20px;
+}
+.llo {                      /*付箋のテープ部分*/
+  background    : #ccccbb;
+  opacity       : 0.2; 
+  transform     : rotate(3deg);
+  width         : 35%; 
+  height        : 35px;
+  margin        : 0 auto -1em auto;
+  position: relative;
+}
+.loo {                      /*付箋本体*/
+  position: relative;
+  background    : #fffafa;
+  box-shadow    : 4px 4px 4px rgba(0, 0, 0, 0.15);
+  padding       : 25px 15px 15px 15px;
+}
+.ioo .ioo_link{             /*付箋の中のリンク部分*/
+  display: block;
+  position: absolute;
+}
+.loo a {                    
+  color   : #212529;      /*付箋のリンクの文字色*/
+}
+.loo a:hover{
+  color   : deeppink;        /*付箋のリンクにマウスを合わせたときの文字色*/
+}
+.loo p{
+  color   : #212529;      /*付箋の文字色*/
+}
+.circle {                   /*スレッド内容表示のアイコン*/
+  border-radius   : 50%;
+  width           : 60px;
+  height          : 60px;
+  object-fit      : cover;
+  border          : 3px solid #999;
+  padding         : 3px;
+  position        : absolute;
+  left            : -10%;
+  margin          : 0%;
+}
+.pagination {               /*ページ切り替えの設定*/
+  position    :relative;
+  bottom      : 0%;
+  left        : 40%;
+  clear       : both;
+}
+/** ------ thead 関連 end ------ **/
+
+
+
+/** ------ nav  ------ **/
+nav.crumbs{
+  border-bottom   : 1px solid #c0c0c0;
+}
+
+.crumbs ol {
+  list-style-type   : none;
+  padding-left      : 0;
+}
+
+.crumb {
+  display   : inline-block;
+}
+
+.crumb a::after {
+  display       : inline-block;
+  color         : #c0c0c0;
+  content       : '>';
+  font-size     : 80%;
+  font-weight   : bold;
+  padding       : 0 3px;
+}
+/** ------ nav end ------ **/
+
+
+
+/** ------ index.php ------ **/
+table {
+  table-layout    : fixed;
+}
+th {
+  font-size: 19px;
+  text-decoration   : underline;
+}
+th,td {
+  width     :500px;
+  padding   : 3px;
+}
+.threadname {
+  width         : 1000px;
+  text-align    : left;
+}
+.threadnametd {
+  text-align    : left;
+}
+.threadusername {
+  width   : 300px;
+}
+td.td_posi {
+  text-align    : center;
+}
+/** ------ index.php end ------ **/
+
+
+
+/** ------ riyoukiyaku.php ------ **/
+#kiyaku {
+  text-align  : left;   /*文字配置  */
+}
+#kiyaku_label {
+  text-align  : center;   /*文字配置  */
+}
+script.kiyaku_script {
+  text-align: center;
+}
+/** ------ riyoukiyaku.php end ------ **/
+
+
+
+/** ------ header ------**/
+header {
+  width         : 100%;       /*横幅  */
+  height        : 100px;      /*高さ  */
+  margin-bottom : -60px;      /*マージン（底）  */
+  background    : #333;     /*背景色  */
+  padding       : 20px 50px;    /*パディング  */
+  box-sizing    : border-box;   /*ボックスサイズ  */
+  position      : fixed;        /*ポジション（固定）  */
+  top           : 0;          /*高さ（始め）  */
+  left          : 0;          /*左（始め）  */
+  display       : flex;       /*配置  */
+  /* align-items: center; */   /*配置（センター）*/
+  z-index: 9999;
+}
+
+label{
+	color     : white;    /*文字色*/
+	font-size :10px;      /*文字サイズ*/
+
+}
+header .gnav .menu {
+  display : flex;   /*配置*/
+}
+
+header .gnav .menu li {
+  list-style  : none;   /*下線なし*/
+
+}
+
+header .a{
+  color : #fff;   /*文字色*/
+}
+
+header .a:hover{
+  color : deeppink;   /*押下された際の文字色*/
+}
+
+/* ヘッダーのメニューボタンの横距離設定 */
+header .gnav .menu li + li {
+  margin-left : 40px;
+}
+
+/** 検索バー（未使用）
+.formidx{
+  position  : absolute;   
+  top       : 10px;     
+  right     : 10px;
+}
+**/
+/** ------ header end ------ **/
+
+
+
+/** ------ footer ------ **/
+nav{
+  text-align  : right;  /*文字配置*/
+/*  padding: 2px;*/
+}
+nav li{
+  list-style-type : none;   /*下線なし*/
+  display         : inline; /*配置*/
+  padding         :11px 3px;  /*パディング*/
+}
+footer {
+  width       :100%;    /*横幅*/
+  font-size   : 12px;   /*文字サイズ*/
+  margin      : 20px ;  /*マージン*/
+  margin-top  : -10px;  /*マージン トップ*/
+  bottom      : 0; /*下に固定*/
+  clear       : both;   /*クリア*/
+}
+.foot-wrap {
+
+  background-color  : #333; /*背景色*/
+  color             : #fff; /*文字色*/
+  text-align        : center; /*文字配置*/
+}
+.foot-wrap .menu-left, .menu-right {
+  display : inline-block; /*配置*/
+  width   : 20%;        /*横幅*/
+  margin  :30px 0 40px auto;  /*マージン*/
+}
+.foot-wrap ul {
+  list-style  : none; /*下線なし*/
+  padding     : 0;    /*パディング*/
+  line-height :20px;  /*距離感*/
+}
+.menu{
+	display       : block;  /*配置*/
+	margin-left   : auto; /*マージン（左）*/
+	margin-right  : auto; /*マージン（右）*/
+	margin-bottom :60px;  /*マージン（下）*/
+}
+.foot-wrap h3 {
+  border-bottom : 3px solid #2ac5b3;  /*線配色*/
+  padding       : 10px; /*パディング*/
+}
+.foot-wrap a {
+  text-decoration : none; /*下線なし*/
+  color           : #fff; /*文字色*/
+}
+.foot-wrap a:hover {
+  color : deeppink;   /*押下された際の文字色*/
+}
+.foot-wrap .cmark {
+  display     : block;  /*配置*/
+  padding     : 10px;   /*パディング*/
+  border-top  : 1px solid gray; /*線（上）*/
+  width       : 80%;    /*横幅*/
+  margin      : 0 auto; /*マージン*/
+  color       : gray; /*文字色*/
+}
+/*@マーク等々*/
+@media screen and (max-width: 900px) {
+  .foot-wrap .menu-left, .menu-right {
+      display         : flex;
+      flex-direction  : column;
+      width           : 50%;
+  }
+  .foot-wrap .cpr {
+      display : inline;
+  }
+}
+/** ------ footer end ------ **/
+
+
+
+/** ------ main2.css start ------ **/
+.profile{
+  padding-top       : 60px;
+  background-color  : #333;
+  color             : white;
+  width             : 50%;
+  margin            : 20px auto;
+}
+.profile.details{
+  display : block;
+  height  : 175px;
+  margin  : 5% 0;
+}
+.icon{
+  width         : 150px!important;
+  height        : 150px!important;
+  margin        : 20px;
+  margin-right  : 1em!important;
+  transition    : transform 1s ease-out;
+  float         :left;
+}
+.profile.details.id{
+  float     :right;
+  margin    : 5% 0;
+  font-size :14px;
+  width     :60%;
+}
+.log{
+  width   :70%;
+  margin  : 5% 0;
+  height  :auto;
+}
+
+/* タグ設定が曖昧で他のタグに影響与えるため コメントアウトしてます。
+*,
+*:before,
+*:after {
+  -webkit-box-sizing  : inherit;
+  box-sizing          : inherit;
+}
+html {
+/*-webkit-box-sizing  : border-box;
+  box-sizing          : border-box;
+  font-size           : 62.5%;/*rem算出をしやすくするために
+}
+*/
+
+.btn,
+a.btn,
+button.btn {
+  font-size           : 16px;
+  font-weight         : 700;
+  line-height         : 1.5;
+  position            : relative;
+  display             : inline-block;
+  margin              : 7px;
+  padding             : 2px 4px;
+  cursor              : pointer;
+  -webkit-user-select : none;
+  -moz-user-select    : none;
+  -ms-user-select     : none;
+  user-select         : none;
+  -webkit-transition  : all 0.3s;
+  transition          : all 0.3s;
+  text-align          : center;
+  vertical-align      : middle;
+  text-decoration     : none;
+  letter-spacing      : 0.1em;
+  color               : #212529;
+  border-radius       : 0.5rem;
+}
+.setting{
+	display : inline-block;
+	margin  : 15px 0 20px auto;
+}
+.btn--green,
+a.btn--green {
+  color             : #fff;
+  background-color  : #00ff7f;
+}
+.btn--green:hover,
+a.btn--green:hover {
+  color       : #fff;
+  background  : #00ff7f;
+}
+a.btn--radius {
+  border-radius : 5px;
+}
+.previous {
+  border-radius       : 10%;
+  background-color    : #f1f1f1;
+  color               : black;
+  padding             : 3px;
+  margin              : 5px;
+}
+.next {
+  border-radius       : 10%;
+  background-color    : #04AA6D;
+  color               : white;
+  padding             : 3px;
+  margin              : 5px;
+}
+.round {
+  border-radius   : 100%;
+  padding         : 2px;
+  margin          : 5px;
+}  
+.profile.setting{
+  width   : 80%;
+
+}
+.followsec{
+  float   : left;
+}
+.logout{
+	float   : left;
+}
+/** -----  main2.css end ----- **/
+
+ /* 長さauto */
+section{ 
+  flex-direction    : column;
+  min-height        : 100vh;
+}
+.indexbody{ 
+  flex-direction    : column;
+  min-height        : 130vh;
+}
+
+.topbody{ 
+/* display          : flex; */
+  flex-direction    : column;
+  min-height        : 70vh;
+}
+
+
+
+/** ------ Loading ------**/
+
+/* Loading背景画面設定 */
+#splash {
+  /*fixedで全面に固定*/
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: 999;
+text-align:center;
+color:#fff;
+}
+
+/* Loading画像中央配置 */
+#splash_text {
+position: absolute;
+top: 50%;
+left: 50%;
+  z-index: 999;
+transform: translate(-50%, -50%);
+color: #fff;
+width: 100%;
+}
+
+/*IE11対策用バーの線の高さ※対応しなければ削除してください*/
+#splash_text svg{
+  height: 2px;
+}
+
+/*割れる画面のアニメーション*/
+.loader_cover {
+  width: 100%;
+  height: 50%;
+  background-color: #333;
+  transition: all .2s cubic-bezier(.04, .435, .315, .9);
+  transform: scaleY(1);
+}
+/*上の画面*/
+.loader_cover-up {
+  transform-origin: center top;
+}
+
+/*下の画面*/
+.loader_cover-down {
+  position: absolute;
+  bottom: 0;
+  transform-origin: center bottom;
+}
+/*クラス名がついたらY軸方向に0*/
+.coveranime {
+  transform: scaleY(0);
+}
+/** ------ Loading end ------**/
