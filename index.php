@@ -58,8 +58,6 @@
 	<?php include 'source/thread_create.php'?>
 	<div class="postbox">
 	<a id="postjump"></a>
-	<h2>新しいスレッド</h2><br>
-	<h2>新しいスレッド</h2><br>
 	<form action="" method="post">
 		<p>ユーザー名：<input <?php if(isset( $_SESSION['name'])==true){echo $_SESSION['name'];} ?> disabled></input>
 		<p>タイトル：&nbsp;&nbsp;&nbsp;<input type="text" name="title"></p>
