@@ -4,8 +4,6 @@
 		<ul class="menu">
 			<li> 
 				<?php
-					session_start();
-					//登録状態を確認
 					if (isset($_SESSION['name'])){ 
 						//登録の場合
 						
