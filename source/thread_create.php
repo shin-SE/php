@@ -62,7 +62,7 @@
                user_name CHAR(20), 
                content TEXT(1000), 
                posttime datetime, 
-               like_cnt INT, 
+               like_cnt INT default 0, 
                anonymous enum('t','f') 
              )default charset=utf8";
              $res_create_table = $dbh->query($sql);
