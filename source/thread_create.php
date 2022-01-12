@@ -8,6 +8,7 @@
       $user_name = $_SESSION['name'];
       $thread_intro = $_POST['body'];
       $category = $_POST['category'];
+      $user_id = $SESSION['id'];
       
       if(!isset($_SESSION['name'])){
          echo '<span color="#FF0000">スレッドをたてる前にログインしてください。';
@@ -21,11 +22,11 @@
         $conn=mysqli_connect($host,$user,$password,$name);
         
         // -----更新1 Trdテーブルに挿入
-        $stmt = mysqli_prepare($conn," INSERT INTO shineva.Trd (thread_id,thread_name,user_name, posttime,last_post_time,thread_intro) VALUES (?,?,?,?,?,?);");
+        $stmt = mysqli_prepare($conn," INSERT INTO shineva.Trd (thread_id,thread_name,user_name,category,posttime,last_post_time,thread_intro) VALUES (?,?,?,?,?,?,?);");
         
         // 実行
         $id=0;
-        $stmt->bind_param("isssss",$id,$thread_name,$user_name,$now,$now,$thread_intro);
+        $stmt->bind_param("issssss",$id,$thread_name,$user_name,$category,$now,$now,$thread_intro);
         $res_sql_Trd_insert = $stmt->execute();
       
 
@@ -57,6 +58,7 @@
           // 実行
           $sql = "CREATE TABLE ".$tablename."( 
                colume_id INT PRIMARY KEY AUTO_INCREMENT,
+               user_id INT,
                user_name CHAR(20), 
                content TEXT(1000), 
                posttime datetime, 
@@ -85,12 +87,10 @@
           
             // ------更新3 スレッドの＃１を更新     
             
-                   
-           $stmt = mysqli_prepare($conn,"INSERT INTO ".$tablename." (user_name, content, posttime, anonymous) VALUES (?, ?, ?, ?);");
-           $anonymous="f";
-				mysqli_stmt_bind_param($stmt, "ssss", $user_name, $thread_intro, $now, $anonymous);
+            $anonymous="f";
+            $stmt = mysqli_prepare($conn,"INSERT INTO ".$tablename." (user_id, user_name, content, posttime, anonymous) VALUES (?, ?, ?, ?, ?);");
+				mysqli_stmt_bind_param($stmt, "sssss", $user_id, $user_name, $thread_intro, $now, $anonymous);
 				$res_comment_update = mysqli_stmt_execute($stmt);
-      
 
             if($res_comment_update){
               //テンプレートをthreadsフォルダにコピー
