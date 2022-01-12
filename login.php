@@ -157,6 +157,9 @@ if (isset($_SESSION['name'])) {
             // もう一度ログインフォームを表示
             $acount_alert = "<script type='text/javascript'>alert('アカウント情報が間違っています.');</script>";
             echo $acount_alert;
+            unset($_POST['email']);
+            unset($_POST['password']);
+            header('Location:login.php');
             exit();
         
         }
