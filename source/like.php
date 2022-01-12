@@ -14,14 +14,13 @@ if(isset($_POST['like'])){
        
          if(!$row['like_cnt']){
                  
-                  '<br>ã‚¨ãƒ©ãƒ¼ï¼šç¾åœ¨threadnoãƒ†ãƒ¼ãƒ–ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡ºæ¥ã¾ã›ã‚“<br>';
+                  '<br>ƒGƒ‰[FŒ»İthreadnoƒe[ƒuƒ‹ƒAƒNƒZƒXo—ˆ‚Ü‚¹‚ñ<br>';
          }else{
               
                  $ip_sql=mysqli_query($conn,"select user_id from like_ip where thread_id='$newname' AND colume_id='$likeid' and user_id='$id'");
                  $count=mysqli_num_rows($ip_sql);
                  
-                 echo $count;
-                 echo $newname;
+
                  if($count==0){              // like+1
                  
                                  //update trd table
