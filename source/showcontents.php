@@ -19,8 +19,13 @@ if (!empty($res_data)){
                   <div class="itt_1">
                         <div class="inner_itt">
                              <form  method="post">
+                                      <?php  
+                                　　　　 　　$colume_id=$row['colume_id'];
+                                 　　　　　　$result_like = mysqli_query($conn,"select like_cnt from threadno".$newname." where colume_id= '$colume_id' ");
+                                 　　　　　　$row_like = mysqli_fetch_assoc($result_like);
+                           　　　　　  ?>
                                      <button  type="submit" name="like" value="<?php echo $row['colume_id'] ?>" class="btn_like">
-                                           <i class="fas fa-thumbs-up"></i>投稿いいね！
+                                           <i class="fas fa-thumbs-up"></i>いいね！(<?php echo $row_like['like_cnt'] ?>)
                                      </button>
                                      
                                      <button  type="submit" name="mute" value="<?php echo $row['colume_id'] ?>" class="btn_mute">
