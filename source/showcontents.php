@@ -14,7 +14,15 @@ if (!empty($res_data)){
                              }?><br>
                         作成日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<?=($row['posttime'])?><br>
                         <!--作成日-->
-                        コンテンツ&nbsp;&nbsp;:<?=($row['content'])?>
+                         コンテンツ&nbsp;&nbsp;:<? php
+                                 $result_mute=mysqli_query($conn,"select user_id from mute where thread_id='$newname' AND colume_id='$likeid' and user_id='$id'");
+                                 $count=mysqli_num_rows($result_mute);
+                                 if($count==1){
+                                    echo 'ミュート中';
+                                 else{
+                                    echo "$row['content']";
+                                 }
+                                 ?>
                   </div>
                   <div class="itt_1">
                         <div class="inner_itt">
