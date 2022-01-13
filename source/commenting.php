@@ -5,8 +5,7 @@
 		if (isset($_POST["body"])) {
 			$body = htmlspecialchars($_POST["body"], ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, "UTF-8", true);
 			
-			// データベースに接続
-			include('dbconnect.php');
+		
 			//日本東京タイムゾーン指定
 			date_default_timezone_set("Asia/Tokyo"); 
 
@@ -20,17 +19,16 @@
 			}
 			$time=date('Y-m-d H:i:s');
 			mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-			$mysqli = mysqli_connect($host,$user,$password,$name);
-			if (!$mysqli) {
+
+			if (!$conn) {
 				echo "データベース接続失敗: " . mysqli_connect_error();
 				die();
 			}
 			
 			try {
-				$sql="INSERT INTO ".$tablename." (user_name, content, posttime, anonymous,like_cnt) VALUES (?, ?, ?, ?,?);";
-				$stmt = mysqli_prepare($mysqli, $sql);
-				$like_cnt=0;
-				mysqli_stmt_bind_param($stmt, "ssssi", $user_name, $body, $time, $anonymous,$like_cnt);
+				$sql="INSERT INTO ".$tablename." (user_name, content, posttime, anonymous) VALUES (?, ?, ?, ?);";
+				$stmt = mysqli_prepare($conn, $sql);
+				mysqli_stmt_bind_param($stmt, "ssss", $user_name, $body, $time, $anonymous);
 				$res_comment_update = mysqli_stmt_execute($stmt);
 			} catch (mysqli_sql_exception $e) {
 				echo $e->getMessage();
@@ -43,17 +41,17 @@
 				$newname_int=  (int)$newname;
 				//Trdテーブルの最新更新日を更新
 				$sql_Trd_update="UPDATE Trd SET last_post_time = ? WHERE thread_id = ?;";
-				$stmt2 = mysqli_prepare($mysqli, $sql_Trd_update);
+				$stmt2 = mysqli_prepare($conn, $sql_Trd_update);
 				mysqli_stmt_bind_param($stmt2, "si", $time, $newname_int);
 				// 実行
 				$res_Trd_update = mysqli_stmt_execute($stmt2);
-				mysqli_close($mysqli);
+				mysqli_close($conn);
 				if ($res_Trd_update) {
 					header('Location: '.$newname.'.php');
 					exit();
 				} else {
 					echo 'Trdテーブル更新失敗しました。';
-					// printf("Error message:%s\n",$mysqli->error);
+					// printf("Error message:%s\n",$conn->error);
 				}
 			} else {
 				echo 'threadnoテーブル更新失敗しました。';
