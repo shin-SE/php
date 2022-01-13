@@ -2,7 +2,7 @@
 <?php
 // エラーを出力する
 	ini_set('display_errors', "On");
-
+      ini_set("auto_detect_line_endings",true);
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'スレッド';
 	$is_home = false; //トップページの判定用の変数
@@ -21,11 +21,11 @@
     $offset = ($pageno-1) * $no_of_records_per_page;
     // データベース接続
     include '../source/dbconnect.php';
-    $conn=mysqli_connect($host,$user,$password,$name);
+        $conn=mysqli_connect($host,$user,$password,$name);
     $filename= __FILE__;
 	$newname=substr($filename,-11,7);
 	$tablename="threadno".$newname;
-	$sql = "SELECT * FROM $tablename ORDER BY posttime asc  LIMIT $offset, $no_of_records_per_page;";
+	$sql = "SELECT * FROM $tablename ORDER BY posttime ASC  LIMIT $offset, $no_of_records_per_page;";
     include '../source/pagging.php'; 
     
 	include '../inc/thread_head.php'; // head.php の読み込み
@@ -58,13 +58,20 @@
 ?>
 <!-- スレッド表示 -->
 
-	<h2><?=($row2['thread_name'])?></h2>
-	<div class="float_box-wrap">
+		<nav class="crumbs">
+		<ol>
+			<li class="crumb"><a href="../index.php">Top</a></li>
+			<li class="crumb"><a href="../thread_top.php">Thread_Top</a></li>
+			<li class="crumb"><?=($row2['thread_name'])?></li>
+		</ol>
+	</nav>
+	
 	<div class="indexbody">
-	<article>
-	<table class="threadview_table">
-	<!--　スレッド一覧タイトル　-->
-	    <tr><th>ユーザー</th><th>内容</th><th></tr>
+			<article>
+			<div class="zenny_aside">
+				<?php include '../inc/thread_aside.php' ?>
+			</div>
+			<h2><?=($row2['thread_name'])?></h2>
 		<!-- スレッド一覧内容 -->
 		<?php include '../source/like.php';
 		      include '../source/mute.php';
@@ -79,7 +86,7 @@
 	<div class="postbox">
 	<p>コメント投稿欄</p>
 	<form action="" method="post">
-		<p>ユーザー名：<input <?php if(isset($_SESSION['name'])){echo $_SESSION['name'];} ?> disabled></p>
+		<p>ユーザー名:<input <?php if(isset($_SESSION['name'])){echo $_SESSION['name'];} ?> disabled></p>
 		<p>内容:</p>
 		<textarea name="body"></textarea>
 		<p>匿名で投稿する:<input type="checkbox" name="anonymous" value="true"></p>
@@ -89,10 +96,7 @@
 	<!--　スレッド投稿end　-->
 	</div>
 	</article>
-	
-	
-	
-	<?php include '../inc/aside.php'?>
+
 	</div>
 	
 	<!--ページングボタン     pagechange.php の読み込み  -->
