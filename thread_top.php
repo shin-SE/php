@@ -1,7 +1,7 @@
 <html>
 <?php
 // エラーを出力する
-	ini_set('display_errors', "On");ini_set("auto_detect_line_endings",true);
+	ini_set('display_errors', "On");
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'スレッドtop';
 	$is_home = false; //トップページの判定用の変数
@@ -19,7 +19,6 @@
     $offset = ($pageno-1) * $no_of_records_per_page;
     // データベース接続
     include 'source/dbconnect.php';
-    $conn=mysqli_connect($host,$user,$password,$name);
     $sql = "SELECT* FROM trd  ORDER BY last_post_time desc  LIMIT $offset, $no_of_records_per_page;";
     include 'source/pagging.php';
 	include 'inc/head.php'; // head.php の読み込み
@@ -34,17 +33,23 @@
 <?php include 'inc/header.php'; ?> 
 	<nav class="crumbs">	<!-- ページのナビゲーション -->
 		<ol>
-			<li class="crumb"><a href="./index.php">Top</a></li>
+			<li class="crumb"><a href="index.php">Top</a></li>
 			<li class="crumb">Thread_Top</li>
 		</ol>
 	</nav>
 	
-	<article>  
+	<article>
+		<div class="zenny_aside">
+			<?php include 'inc/aside.php'?>
+		</div>
 		<!--スレッド表示   showthreads.php  の読み込み--->
+		<div class="zenny">
+			<h2>スレッド一覧</h2>
 		<?php include 'source/showthreads.php'?>
 		<a href="index.php#postjump" class="btn btn--green btn--radius">スレッド投稿</a>
+		</div>
 	</article>
-	<?php include './inc/aside.php'?>
+	
 
     <!--ページングボタン     pagechange.php の読み込み  -->
 	<?php include 'source/pagechange.php'?>

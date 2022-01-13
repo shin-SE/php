@@ -8,7 +8,7 @@
       $user_name = $_SESSION['name'];
       $thread_intro = $_POST['body'];
       $category = $_POST['category'];
-      $user_id = $SESSION['id'];
+      $user_id = $_SESSION['id'];
       
       if(!isset($_SESSION['name'])){
          echo '<span color="#FF0000">スレッドをたてる前にログインしてください。';
@@ -89,7 +89,7 @@
             
             $anonymous="f";
             $stmt = mysqli_prepare($conn,"INSERT INTO ".$tablename." (user_id, user_name, content, posttime, anonymous) VALUES (?, ?, ?, ?, ?);");
-				mysqli_stmt_bind_param($stmt, "sssss", $user_id, $user_name, $thread_intro, $now, $anonymous);
+				mysqli_stmt_bind_param($stmt, "issss", $user_id, $user_name, $thread_intro, $now, $anonymous);
 				$res_comment_update = mysqli_stmt_execute($stmt);
 
             if($res_comment_update){
