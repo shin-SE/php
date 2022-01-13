@@ -56,7 +56,7 @@ if(isset($_POST['like'])){
                }
           }
      }else{
-          $alert="<script type='text/javascript'>alert('You must login first.');</script>";
+          $alert="<script type='text/javascript'>alert('You must login first.like.');</script>";
           echo $alert;
           
      }
