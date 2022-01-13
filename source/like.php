@@ -19,7 +19,6 @@ if(isset($_POST['like'])){
                      }else{
                      $count=$ip_sql->num_rows;
                   }
-                 echo "<br>count:".$count;
                  if($count==0){              // like+1
                  
                                  //update trd table
