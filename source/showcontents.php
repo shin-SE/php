@@ -2,9 +2,9 @@
 if (!empty($res_data)){
       while($row = mysqli_fetch_array($res_data)){
             ?>
-            <div class="ill">
+             <div class="that">
             <img src="../profile.png" class="circle">
-                  <div class="itt">
+                  <div class="it">
                         <!--タイトル-->
                         
                         ユーザー名 &nbsp;:<?php if ($row['anonymous'] == "f") {
@@ -31,9 +31,9 @@ if (!empty($res_data)){
                                  $flag_mute=false;
                                  ?>
                   </div>
-                  <div class="itt_1">
+                  <div class="itt">
                         <div class="inner_itt">
-                           <form  method="post">
+                        <form  method="post">
                              <?php  
                                  $colume_id=$row['colume_id'];
                                  $result_like = mysqli_query($conn,"select like_cnt from threadno".$newname." where colume_id= '$colume_id' ");
@@ -41,22 +41,22 @@ if (!empty($res_data)){
                                  
                                  
                              ?>
-                                     <button  type="submit" name="like" value="<?php echo $row['colume_id'] ?>" class="btn_like" >
+                                     <button  type="submit" name="like" value="<?php echo $row['colume_id'] ?>" class="btn_itt btn_like" >
                                            <i class="fas fa-thumbs-up"></i>いいね！(<?php echo $row_like['like_cnt'] ?>)
                                      </button>
                                      </form>
                                <form  method="post">      
-                                     <button  type="submit" name="mute" value="<?php echo $row['colume_id'] ?>" class="btn_mute">
+                                     <button  type="submit" name="mute" value="<?php echo $row['colume_id'] ?>" class="btn_itt btn_mute">
                                            <i class="fas fa-comment-slash"></i>コメント非表示
                                      </button>
                                 </form>
                                  <form  method="post">  
-                                     <button type="submit" name="block" value="<?php echo $row['colume_id'] ?>" class="btn_block">
+                                     <button type="submit" name="block" value="<?php echo $row['user_id'] ?>" class="btn_itt btn_block">
                                            <i class="fas fa-user-slash"></i>投稿者ブロック
                                      </button>
                                 </form>
                                 <form  method="post">         
-                                     <button  type="submit" name="follow" value="<?php echo $row['colume_id'] ?>"  class="btn_follow">
+                                     <button  type="submit" name="follow" value="<?php echo $row['colume_id'] ?>"  class="btn_itt btn_follow">
                                            <i class="fas fa-plus"></i>投稿者フォロー
                                      </button>
                               </form>
@@ -64,7 +64,7 @@ if (!empty($res_data)){
 
                         </div>
                   </div>
-                  <hr class="pill">
+                  <hr class="pat">
             </div>
       <?php
       }
