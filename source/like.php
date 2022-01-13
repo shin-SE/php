@@ -4,18 +4,15 @@ if(isset($_POST['like'])){
      if(isset($_SESSION['id'])){
          $id= $_SESSION['id'];
          $likeid = $_POST['like'];
-         echo $_POST['like'];
          $title= __FILE__;
          $table_id=substr($title,-11,7);
 
          $result = mysqli_query($conn,"select like_cnt from threadno".$newname." where colume_id= '$likeid' ");
          $row = mysqli_fetch_assoc($result);
-         echo $row['like_cnt'];
          if(!$result){
                  
                   '<br>エラー：現在threadnoテーブルアクセス出来ません<br>';
          }else{
-                 echo $row['like_cnt'];
                  $ip_sql=$conn->query("select user_id from like_ip where thread_id='$newname' AND colume_id='$likeid' AND user_id='$id'");
                  if(!$ip_sql){
                      $count=0;
