@@ -2,7 +2,7 @@
 <?php
 // エラーを出力する
 	ini_set('display_errors', "On");
-        ini_set("auto_detect_line_endings",true);
+
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'スレッド';
 	$is_home = false; //トップページの判定用の変数
@@ -21,15 +21,14 @@
     $offset = ($pageno-1) * $no_of_records_per_page;
     // データベース接続
     include '../source/dbconnect.php';
-      $conn=mysqli_connect($host,$user,$password,$name);
-      $filename= __FILE__;
+    $conn=mysqli_connect($host,$user,$password,$name);
+    $filename= __FILE__;
 	$newname=substr($filename,-11,7);
 	$tablename="threadno".$newname;
-	$sql = "SELECT * FROM $tablename ORDER BY posttime ASC LIMIT $offset, $no_of_records_per_page;";
-    
+	$sql = "SELECT * FROM $tablename ORDER BY posttime asc  LIMIT $offset, $no_of_records_per_page;";
     include '../source/pagging.php'; 
-
-    include '../inc/thread_head.php'; // head.php の読み込み
+    
+	include '../inc/thread_head.php'; // head.php の読み込み
 ?>
 		<style>
 			.red p {
@@ -67,8 +66,10 @@
 	<!--　スレッド一覧タイトル　-->
 	    <tr><th>ユーザー</th><th>内容</th><th></tr>
 		<!-- スレッド一覧内容 -->
-             <?php include '../source/like.php' ?>
-		<?php include'../source/showcontents.php'?>
+		<?php include '../source/like.php';
+		      include '../source/mute.php';
+		      include '../source/showcontents.php';
+		      ?>
 			
 	</table>
 	<!--　スレッド表示end -->
@@ -89,7 +90,9 @@
 	</div>
 	</article>
 	
-     <?php include '../inc/thread_aside.php' ?>
+	
+	
+	<?php include '../inc/aside.php'?>
 	</div>
 	
 	<!--ページングボタン     pagechange.php の読み込み  -->
