@@ -27,9 +27,10 @@
 			}
 			
 			try {
-				$sql="INSERT INTO ".$tablename." (user_name, content, posttime, anonymous) VALUES (?, ?, ?, ?);";
+				$sql="INSERT INTO ".$tablename." (user_name, content, posttime, anonymous,like_cnt) VALUES (?, ?, ?, ?,?);";
 				$stmt = mysqli_prepare($mysqli, $sql);
-				mysqli_stmt_bind_param($stmt, "ssss", $user_name, $body, $time, $anonymous);
+				$like_cnt=0;
+				mysqli_stmt_bind_param($stmt, "ssssi", $user_name, $body, $time, $anonymous,$like_cnt);
 				$res_comment_update = mysqli_stmt_execute($stmt);
 			} catch (mysqli_sql_exception $e) {
 				echo $e->getMessage();
