@@ -24,13 +24,9 @@
 		$q_value = '""';
 	}
 	
-	$choice_value;
-	if (filter_input(INPUT_GET, 'choice') == "username") {
-		$choice_value = "user_name"; 
-	} else if (filter_input(INPUT_GET, 'choice') == "threadname") {
-		$choice_value = "thread_name";
-	} else if (filter_input(INPUT_GET, 'choice') == "content") {
-		$choice_value = "content";
+	$choice_value = "user_name";
+	if (filter_input(INPUT_GET, 'choice') == "threadname") {
+		$choice_value = "thread_name"; 
 	}
 ?>
 <!DOCTYPE html>
@@ -46,9 +42,7 @@
 				<input type="radio" id="choice1" name="choice" value="username" checked>
 				<label for="choice1">作者</label>
 				<input type="radio" id="choice2" name="choice" value="threadname">
-				<label for="choice2">タイトル</label>
-				<input type="radio" id="choice3" name="choice" value="content">
-				<label for="choice3">内容</label><br>
+				<label for="choice2">タイトル</label><br>
 			</div>
 			<div>
 				<label for="string">検索文字列：</label>
@@ -70,16 +64,8 @@
 			$sql_table="SELECT thread_id FROM trd ;";
 			$res_table = mysqli_query($conn,$sql_table);
 			
-			if ($choice_value == "content" && $q != "") {
-				while($row = mysqli_fetch_array($res_table)) {
-					//$row=thread_id
-					$sql = "SELECT * FROM threadno".$row." ORDER BY posttime DESC LIKE ".$q." ;";
-					$res_data = mysqli_query($conn,$sql);
-				}
-			} else {
-				$sql = "SELECT * FROM trd WHERE $choice_value LIKE '%$q%' ORDER BY last_post_time desc LIMIT 15;";
-				$res_data = mysqli_query($conn,$sql);
-			}
+			$sql = "SELECT * FROM trd WHERE $choice_value LIKE '%$q%' ORDER BY last_post_time desc LIMIT 15;";
+			$res_data = mysqli_query($conn,$sql);
 			
 			if (!empty($res_data) && $res_data->num_rows > 0) {
 				while($row = mysqli_fetch_array($res_data)) {
