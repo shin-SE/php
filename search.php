@@ -1,5 +1,5 @@
 <?php
-      ini_set("auto_detect_line_endings",true);
+    ini_set("auto_detect_line_endings",true);
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = '検索結果';
 	$is_home = false; //トップページの判定用の変数
@@ -40,6 +40,12 @@
 	</head>
 	<body>
 		<?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
+		<nav class="crumbs">
+			<ol>
+				<li class="crumb"><a href="index.php">Top</a></li>
+				<li class="crumb">Search</li>
+			</ol>
+		</nav>
 		<form action="" method="get">
 			<p>スレッドの検索</p>
 			<div>
@@ -51,7 +57,7 @@
 				<label for="choice3">内容</label><br>
 			</div>
 			<div>
-				<label for="string">検索文字列：</label>
+				<label for="string">検索文字列:</label>
 				<input type="text" id="string" name="q" value="<?php echo $q_value ?>"><br>
 			</div>
 			<div>
@@ -103,7 +109,7 @@
 			}
 			mysqli_close($conn);
 		} catch(PDOException $e) {
-			echo "エラー：" . $e->get<Message();
+			echo "エラー:" . $e->getMessage();
 		}
 		?></p>
 		
