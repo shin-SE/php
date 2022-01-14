@@ -2,6 +2,7 @@
 <?php
     // エラーを出力する
     ini_set('display_errors', "On");
+	
     // データベースに接続
     include('source/dbconnect.php');
 	$description = 'プロファイル';
@@ -17,9 +18,6 @@
 			<li class="crumb">Profile</li>
 		</ol>
 	</nav>
-	
-	<!--　01月12日　アイコン変更のため編集　石井 -->
-	
 	<?php
 	if (!isset($_SESSION['name'])) {
 	header('Location: index.php');
@@ -36,7 +34,7 @@
 	//データ受け取る
 		$id=$_SESSION['id'];
     
-     //var_dump($_SESSION);
+    // var_dump($_SESSION);
      //var_dump($id);
     
 	try {
@@ -51,31 +49,25 @@
 			$datesql = $db->prepare("
 				SELECT sign_in FROM shineva.user_kihon WHERE user_id=:id
 			");
-
-			
 			
 			// パラメータを割り当て
 			$stmt->bindParam(':id',$id , PDO::PARAM_STR);
 			$datesql->bindParam(':id',$id , PDO::PARAM_STR);
-			
 
 			
 			// クエリの実行
 			$stmt->execute();
 			$datesql->execute();
-			
 
 			$row = $stmt->fetch();
 			$signdate = $datesql->fetch();
 			
-			
 		} catch(PDOException $e){
-			die('エラー：' . $e->getMessage());
+			die('エラー:' . $e->getMessage());
 		}
 		}
-     // var_dump($row['img']);
+      //var_dump($row['img']);
 	 //var_dump($signdate);
-	 
 	?>
 	<wrapper>
 <!-- プロファイル設定 -->
@@ -83,10 +75,9 @@
 		<div class="profile">
 
 			<div class="details">
-				<a href="upload.php" >
-				<img class="icon" src="./img/<?php echo $row['img'];?>"
-				</a>
-				
+			<a href="upload.php" >
+				<img class="icon" src="./img/<?php echo $row['img'];?>">
+			</a>
 				<div class="id">
 					<div class ="introduce"> 
 						<p>id:<?= ($_SESSION['id']) ?></p>
@@ -96,8 +87,7 @@
 					</div>
 				</div>
 			</div> 
-			
-                                          <!-- end -->
+
 
 			<div class="log">
 			<!--log機能12月-->
