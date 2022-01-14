@@ -15,10 +15,25 @@ ini_set("auto_detect_line_endings",true);
 </head>
 <body>
 <?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
-	<section>
-		<h2>Follow list</h2>
-		<h2>Follower list</h2>
-		<h2>Block list</h2>
+	<nav class="crumbs">
+		<ol>
+			<li class="crumb"><a href="index.php">Top</a></li>
+			<li class="crumb"><a href="profile.php">profile</a></li>
+			<li class="crumb">User List</li>
+		</ol>
+	</nav>
+	<section class="user01">
+		<div class="follow">
+			<h2>Follow list</h2>
+		</div>
+
+		<div class="follower">
+			<h2>Follower list</h2>
+		</div>
+
+		<div class="block">
+			<h2>Block list</h2>
+		</div>
 	</section>
 	<?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
 </body>
