@@ -16,6 +16,13 @@ ini_set("auto_detect_line_endings",true);
 </head>
 <body>
 	<?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
+	<nav class="crumbs">
+		<ol>
+			<li class="crumb"><a href="index.php">Top</a></li>
+			<li class="crumb"><a href="search.php">Search</a></li>
+			<li class="crumb">Search Results</li>
+		</ol>
+	</nav>
 		
 	<section>
 		<h1>Search results</h1>
