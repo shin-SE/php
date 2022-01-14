@@ -10,7 +10,7 @@
 					if (isset($_SESSION['name'])){ 
 						//登録の場合
 						
-				?><a href="../source/logout.php">ログアウト</a> &nbsp; &nbsp; &nbsp;| &nbsp;&nbsp; &nbsp;<a href="profile.php">プロファイル</a>
+				?><a href="../source/logout.php">ログアウト</a> &nbsp; &nbsp; &nbsp;| &nbsp;&nbsp; &nbsp;<a href="../profile.php">プロファイル</a>
 				<?php
 					}else if($is_snyc==false){
 						//DBに接続してない場合

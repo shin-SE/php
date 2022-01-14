@@ -10,7 +10,7 @@
 		<ul class="menu">
 			<li> 
 				<?php
-                                        if(!isset($_SESSION['id'])){
+                   if(!isset($_SESSION['id'])){
 					session_start();
 					}
 					if (isset($_SESSION['name'])){ 
