@@ -19,6 +19,7 @@
     $offset = ($pageno-1) * $no_of_records_per_page;
     // データベース接続
     include 'source/dbconnect.php';
+    $conn=mysqli_connect($host,$user,$password,$name);
     $sql = "SELECT* FROM trd  ORDER BY last_post_time desc  LIMIT $offset, $no_of_records_per_page;";
     include 'source/pagging.php';
 	include 'inc/head.php'; // head.php の読み込み
