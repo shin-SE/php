@@ -2,7 +2,6 @@
 // エラーを出力する
 ini_set('display_errors', "On");
 ini_set("auto_detect_line_endings",true);
-
 //ログインしていればトップページに移動
 
 if (isset($_SESSION['name'])) {
@@ -11,17 +10,16 @@ if (isset($_SESSION['name'])) {
 //ログインしていない場合
 }else if (isset($_POST['email']) && isset($_POST['password'])) {
      // echo "test get post";
-     
+    
      // データベースに接続
-     include('source/dbconnect.php');
+    include('source/dbconnect.php');
       // echo "db connect";
-
   try {
     $db = new PDO($dsn, $user, $password);
     $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
     //データを受け取る
-     $email=$_POST['email'] ;
+    $email=$_POST['email'] ;
      //echo $email;
     //hash
 		$beforehash=$_POST['email'].$_POST['password'];
@@ -31,8 +29,7 @@ if (isset($_SESSION['name'])) {
     $stmt = $db ->prepare("
     SELECT * FROM shineva.user_kihon WHERE e_mail=:e_mail AND password=:password
     ");
-   
-
+    
     // print_r($db->errorInfo());
 
     // パラメータを割り当て
@@ -43,8 +40,8 @@ if (isset($_SESSION['name'])) {
     //クエリの実行
     $stmt->execute();
     // echo "db execute";
-     } catch(PDOException $e){
-        die('エラー：' . $e->getMessage());
+    } catch(PDOException $e){
+        die('エラー:' . $e->getMessage());
       }
     }
 // ログインしていない場合はログインフォームを表示する
@@ -68,7 +65,13 @@ if (isset($_SESSION['name'])) {
 </head>
 <body>
 <?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
-	<section>
+<nav class="crumbs">
+		<ol>
+			<li class="crumb"><a href="index.php">Top</a></li>
+      <li class="crumb">Login</li>
+		</ol>
+	</nav>
+	<section class="login_in">
 	<div class="form-group">
 	
 		<form action="" method="post">
@@ -83,9 +86,9 @@ if (isset($_SESSION['name'])) {
           
           <script language="javascript">
             function pushHideButton() {
-             var txtPass = document.getElementById("password");
-             var btnPass = document.getElementById("buttonPassword");
-             
+              var txtPass = document.getElementById("password");
+              var btnPass = document.getElementById("buttonPassword");
+
             if (txtPass.type === "text") {
               txtPass.type = "password";
               btnPass.value = "表示";
@@ -100,10 +103,10 @@ if (isset($_SESSION['name'])) {
             
           <button type="submit">ログイン</button><br>
           </form>
-         
             
       <?php
-	  /**
+
+          /**
           * メール認証なしの時だけ：if($_COOKIE['terminal']==true)
           * 通常：if($_COOKIE['terminal']!=true)
           */
@@ -140,7 +143,7 @@ if (isset($_SESSION['name'])) {
 
       <?php
               
-            }else{ 
+            }else{  
               $_SESSION['id'] = $row['user_id'];
               $_SESSION['name'] = $row['user_name'];
               $_SESSION['email'] = $_POST['email'];
@@ -165,7 +168,6 @@ if (isset($_SESSION['name'])) {
         }
         }
         
-     
       ?>
             <a href="reset.php">パスワードを忘れました</a><br><br>
             

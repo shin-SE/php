@@ -1,19 +1,19 @@
 <?php
    // エラーを出力する
-   ini_set('display_errors', "On");
-ini_set("auto_detect_line_endings",true);
+	ini_set('display_errors', "On");
+	ini_set("auto_detect_line_endings",true);
    //データ受け取る
-	 $_SESSION['email'] = $_POST['e_mail'];
-     $email=$_SESSION['email'];
+	$_SESSION['email'] = $_POST['e_mail'];
+    $email=$_SESSION['email'];
   //ログインしていればトップページに移動
-  if (isset($_SESSION['name'])) {
+	if (isset($_SESSION['name'])) {
     header('Location: index.php');
 
   //ログインしていない場合
-  }else if (isset($_POST['email'] )) {
+	}else if (isset($_POST['email'] )) {
         
 	    // データベースに接続
-	    include('source/dbconnect.php');
+		include('source/dbconnect.php');
 
 		$db = new PDO($dsn, $user, $password);
 		$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -22,15 +22,14 @@ ini_set("auto_detect_line_endings",true);
 			"SELECT * FROM user_kihon WHERE e_mail = :e_mail"
 		);
 		// パラメータを割り当て
-	       
+
 		$stmt->bindParam(':e_mail',$email, PDO::PARAM_STR);
-               
 		//クエリの実行
 		try{
 			$stmt->execute();
 		//$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		} catch(PDOException $e){
-			die('エラー：' . $e->getMessage());
+			die('エラー:' . $e->getMessage());
 		}
 	}
 			
@@ -48,6 +47,12 @@ ini_set("auto_detect_line_endings",true);
 </head>	
 <body>
 <?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
+	<nav class="crumbs">
+		<ol>
+			<li class="crumb"><a href="index.php">Top</a></li>
+			<li class="crumb">Sign Up</li>
+		</ol>
+	</nav>
 	
 	<!-- 認証コード入力設定 -->
 	<section>
@@ -119,5 +124,5 @@ ini_set("auto_detect_line_endings",true);
 			<button type="submit">認証コードを確認</button>
         </form>
 	</section>
-
+				</div>
 <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->

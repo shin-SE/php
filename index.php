@@ -30,7 +30,6 @@
 	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>
 <body>
-	
 	<?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
 	
 	<nav class="crumbs">
@@ -50,8 +49,8 @@
 				<!-- スレッド一覧-->  
 				<div class="zenny">
 					<h2>人気なスレッド</h2>
-				<?php include 'source/showthreads.php'?>
-				<a href="thread_top.php" class="btn btn--green btn--radius">スレッドトップへ</a>
+					<?php include 'source/showthreads.php'?>
+					<a href="thread_top.php" class="btn btn--green btn--radius">スレッドトップへ</a>
 				</div>
 				<hr class="ind">  <!-- 横線 -->
 				
@@ -87,8 +86,7 @@
 						</p>
 					</form>
 				</div>
-			</article>
-			
+			</article>	
 		</div>
 	</div>
 <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->

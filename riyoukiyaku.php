@@ -3,8 +3,8 @@
 <?php
     
     // エラーを出力する
-    ini_set('display_errors', "On");ini_set("auto_detect_line_endings",true);ss
-    
+    ini_set('display_errors', "On");
+    ini_set("auto_detect_line_endings",true);
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = '利用規約';
 	$is_home = false; //トップページの判定用の変数
@@ -23,7 +23,7 @@
 	</nav>
     <section>
         <h1>利用規約</h1><br>
-        <p id="kiyaku">
+        <p class="kiyaku">
         この利用規約（以下，「本規約」といいます。）は，このウェブサイト上で提供するサービス（以下，「当サービス」といいます。）の利用条件を定めるものです。
         登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。<br><br>
 
@@ -136,7 +136,8 @@
         当サービスに関して紛争が生じた場合には，当サービスの本店所在地を管轄する裁判所を専属的合意管轄とします。<br><br>
         </p>
 
-        <script class="kiyaku_script">
+        <div class="ri_div">
+        <script>
             function validate(){
             if(!document.getElementById('id-of-checkbox-1').checked){
                 alert('利用規約を確認してください。');
@@ -144,10 +145,10 @@
                 window.location.href = 'sign_up2.php';
             }
         </script>
-
         <label id="id-of-checkbox-1"><input type="checkbox" name="terms of service">利用規約を確認しました。</label><br>
-        <form onsubmit="validate();">
-            <input type='submit' value="進む">
+        </div>
+        <form class="ri_form" onsubmit="validate();">
+            <button type='submit' value="進む">進む</button>
         </form>
     </section>
     <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->

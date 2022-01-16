@@ -67,7 +67,7 @@ ini_set("auto_detect_line_endings",true);
 		exit();
 		}
 		} catch(PDOException $e){
-		die('エラー：' . $e->getMessage());
+		die('エラー:' . $e->getMessage());
 			}
 ?>
 <!DOCTYPE html>
@@ -83,6 +83,13 @@ ini_set("auto_detect_line_endings",true);
 </head>
 <body>
 <?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
+	<nav class="crumbs">
+		<ol>
+			<li class="crumb"><a href="index.php">Top</a></li>
+			<li class="crumb"><a href="sign_up.php">Sign Up</a></li>
+			<li class="crumb">Sign Up2</li>
+		</ol>
+	</nav>
 
 	<section>
 
@@ -109,4 +116,3 @@ ini_set("auto_detect_line_endings",true);
 		
 	</section>
 	<?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
-

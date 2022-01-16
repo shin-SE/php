@@ -34,6 +34,7 @@ section{
 	width             : 90%;
   flex-direction    : column;
   min-height        : 100vh;
+  margin            : 0 auto;
 }
 /** ------ 全体 end ------ **/
 
@@ -275,16 +276,16 @@ hr.ind{
 
 
 /** ------ riyoukiyaku.php ------ **/
-.kiyaku{
-  margin-left       : 30px;
-}
-#kiyaku {
+.kiyaku {
   text-align        : left;
 }
-#kiyaku_label {
+.ri_div {
   text-align        : center;
 }
-script.kiyaku_script {
+.ri_div label {
+  font-size         : 13px;
+}
+.ri_form{
   text-align        : center;
 }
 /** ------ riyoukiyaku.php end ------ **/
@@ -295,19 +296,10 @@ script.kiyaku_script {
 section.question h1{
   width             : 500px;
 }
-section.question h3{
-  width             : 800px;
-  margin            : 0px;
-  padding           : 0;
-  margin-bottom     : 15px;
-}
 .question {
-  position          : relative;
-  left              : 25%;
-  right             : 25%;
   padding           : 0;
-  margin            : 0;
-  width             : 60%;
+  margin            : 0 auto;
+  width             : 90%;
 }
 .this_com {   
   text-decoration   : underline;
@@ -341,6 +333,42 @@ wrapper{
   padding           : 0;
 }
 /** ------ login.php end ------ **/
+
+
+
+/** ------ upload.php ------ **/
+.up01{
+  width             : 90%;
+  margin            : 0 auto;
+}
+.up01 h1{
+  text-align        : center;
+}
+.up01 form{
+  text-align        : center;
+}
+/** ------ upload.php end ------ **/
+
+
+
+/** ------ userlist.php ------ **/
+.user01{
+  width: 90%;
+  margin: 0 auto;
+}
+.user01 h2 {
+  text-align: center;
+}
+.follow {
+  min-height: 50vh;
+}
+.follower {
+  min-height: 50vh;
+}
+.block {
+  min-height: 50vh;
+}
+/** ------ userlist.php end ------ **/
 
 
 

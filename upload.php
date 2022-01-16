@@ -8,25 +8,35 @@
 	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>
 <body>
- <?php include 'inc/header.php'; ?><!-- header.php の読み込み -->
-<h1>画像アップロード</h1>
-<!--送信ボタンが押された場合-->
-<?php if (isset($_POST['upload'])): ?>
-    <p><?php echo $message; ?></p>
-<?php else: ?>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <button><input type="submit" name="upload" value="変更"></button>
-    </form>   
+    <?php include 'inc/header.php'; ?><!-- header.php の読み込み -->
+    <nav class="crumbs">
+		<ol>
+			<li class="crumb"><a href="index.php">Top</a></li>
+			<li class="crumb"><a href="profile.php">profile</a></li>
+			<li class="crumb">Icon change</li>
+		</ol>
+	</nav>
+    <section class="up01">
+        <h1>画像アップロード</h1>
+        <!--送信ボタンが押された場合-->
+        <?php if (isset($_POST['upload'])): ?>
+        <p><?php echo $message; ?></p>
+        <?php else: ?>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <button><input type="submit" name="upload" value="変更"></button>
+        </form>
+    </section>
 <?php endif;?>
 <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
- 
- 
+
+
+
 <?php
 // テ゛ータベースに接続
 	include('source/dbconnect.php');
 		try {
-    	$db = new PDO($dsn, $user, $password);
+        $db = new PDO($dsn, $user, $password);
 		} catch (PDOException $e) {
 		echo $e->getMessage();
 		}
@@ -51,15 +61,15 @@
                 //プロファイルへ
                 header('Location: profile.php');
                 exit();
-               print_r($stmt -> errorInfo());
+                print_r($stmt -> errorInfo());
             } else {
                 $message = '画像ファイルではありません';
             }
         }
     }
-     
     
-      
+    
+    
      //var_dump($_SESSION);
      //var_dump($id);  
 ?>
