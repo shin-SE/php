@@ -1,36 +1,48 @@
 <?php
-if(isset($_POST['block'];)){
-if(isset($SESSION['name'])){
-    $thisid=$_SESSION['id'];
-    $blockname=$POST['block'];
-    
-    
-    //get block_id 
-    $stmt_getId=$mysqli->prepare('SELECT user_id FROM user_kihon  WHERE user_name=:block_name');
-     $stmtstmt_getId->bind_param(':block_name',$blockname , PDO::PARAM_STR);
-     
-     
-   //get block_id -SQL実行
-     $stmt_getId->execute();
-     $block_id = $stmt_getId->get_result();
-     
-     
-    //insert table block
-    $stmt_block=$mysqli->prepare('INSERT INTO block(user_id,blockoppoment_id)values(?,?)');
-     $stm_blockt->bind_param('ii',$thisid,$block_id);
-    $stmt_block->execute();
-    
-    $result = $stmt_block->get_result();
-    if($result==false){
-    printf("Error: %s.\n", mysqli_stmt_error($stmt));
-    /* ステートメントを閉じます */
-    $stmt->close();
-    }
-}else{
-    $alert = "<script type='text/javascript'>alert('ログインしてください。');</script>";
-    echo $alert;
-}
 
-}
+if(isset($_POST['block'])){
+     if(isset($_SESSION['id'])){
+         $thisid= $_SESSION['id'];
+         $blockid = $_POST['block'];
+         
 
+         $result = mysqli_query($conn,"select * from block where user_id= '$thisid' AND blockoppoment_id= '$blockid' ");
+         
+         if(!$result){
+                 echo '<br>エラー：現在threadnoテーブルアクセス出来ません<br>';
+         }else{
+                 $row =mysqli_num_rows($result);
+                 
+                 $block_sql=$conn->query("select * from block where user_id= '$thisid' AND blockoppoment_id= '$blockid'");
+                 if(!$block_sql){
+                     $count=0;
+                     }else{
+                     $count=$block_sql->num_rows;
+                  }
+                 if($count==0){              // block+1
+                 
+                                 //update trd table
+                       $stmt= $conn->prepare("insert into block (blockoppoment_id,user_id) values (?,?)");
+                       $stmt->bind_param('ii',$blockid,$thisid);
+                       $stmt->execute();
+
+                       unset ($_POST['block']);
+                 
+                }else if($count!=0){                        //block -1
+
+                                  //update trd table
+                       $stmt= $conn->prepare("delete from block where blockoppoment_id=? AND user_id=?");
+                       $stmt->bind_param('ii',$blockid,$thisid);
+                       $stmt->execute();
+
+                       unset ($_POST['block']);
+                 
+               }
+          }
+     }else{
+          $alert="<script type='text/javascript'>alert('You must login first.');</script>";
+          echo $alert;
+          
+     }
+   }
 ?>

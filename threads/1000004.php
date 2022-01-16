@@ -75,15 +75,12 @@
 		<!-- スレッド一覧内容 -->
 		<?php include '../source/like.php';
 		      include '../source/mute.php';
-		      include '../source/follow.php';
-		      include '../source/block.php';
 		      include '../source/showcontents.php';
-		      
 		      ?>
 			
 	</table>
 	<!--　スレッド表示end -->
-
+	
 	<!--　コメント投稿　-->	
 	
 	<div class="postbox">
