@@ -19,15 +19,11 @@
     <section class="up01">
         <h1>画像アップロード</h1>
         <!--送信ボタンが押された場合-->
-        <?php if (isset($_POST['upload'])): ?>
-        <p><?php echo $message; ?></p>
-        <?php else: ?>
         <form method="post" enctype="multipart/form-data">
             <input type="file" name="image">
             <button><input type="submit" name="upload" value="変更"></button>
         </form>
     </section>
-<?php endif;?>
 <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
 
 
@@ -57,13 +53,14 @@
             if (exif_imagetype($file)) {//画像ファイルかのチェック
                 $message = '画像を変更しました';
                 $stmt->execute();
-                
+                 print_r($stmt -> errorInfo());
+                 
                 //プロファイルへ
                 header('Location: profile.php');
                 exit();
-                print_r($stmt -> errorInfo());
             } else {
-                $message = '画像ファイルではありません';
+                $message = "<script type='text/javascript'>alert('画像ファイルではありません');</script>";
+                echo $message;
             }
         }
     }
@@ -73,4 +70,5 @@
      //var_dump($_SESSION);
      //var_dump($id);  
 ?>
+
 
