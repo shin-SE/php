@@ -10,6 +10,7 @@ body {
   padding-top       : 100px;
   background-color  : #333;
   color             : white;
+  position: relative;
 }
 h1,h2,h3,h4,h5,p,a{
 	color             : white;
@@ -319,6 +320,21 @@ wrapper{
 
 
 
+/** ------ search.php ------ **/
+.srh{
+  width             : 90%;
+  margin            : 0 auto;
+}
+.srh_ipt{
+  width             : 500px;
+}
+.srh form{
+  text-align        : center;
+}
+/** ------ search.php end ------ **/
+
+
+
 /** ------ login.php ------ **/
 .form-group{
   /*login*/
@@ -353,20 +369,20 @@ wrapper{
 
 /** ------ userlist.php ------ **/
 .user01{
-  width: 90%;
-  margin: 0 auto;
+  width             : 90%;
+  margin            : 0 auto;
 }
 .user01 h2 {
-  text-align: center;
+  text-align        : center;
 }
 .follow {
-  min-height: 50vh;
+  min-height        : 50vh;
 }
 .follower {
-  min-height: 50vh;
+  min-height        : 50vh;
 }
 .block {
-  min-height: 50vh;
+  min-height        : 50vh;
 }
 /** ------ userlist.php end ------ **/
 
@@ -581,6 +597,9 @@ a.btn--radius {
 }
 .logout{
 	float             : left;
+}
+.upload_01 {
+  float: left;
 }
 /** -----  main2.css end ----- **/
 
