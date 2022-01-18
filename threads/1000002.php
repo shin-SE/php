@@ -1,8 +1,10 @@
-<html>
 <?php
 // エラーを出力する
 	ini_set('display_errors', "On");
     ini_set("auto_detect_line_endings",true);
+    if(!isset($_SESSION['id'])){
+		session_start();
+	}
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'スレッド';
 	$is_home = false; //トップページの判定用の変数
@@ -27,8 +29,11 @@
 	$tablename="threadno".$newname;
 	$sql = "SELECT * FROM $tablename ORDER BY posttime ASC  LIMIT $offset, $no_of_records_per_page;";
     include '../source/pagging.php'; 
-    
-	include '../inc/thread_head.php'; // head.php の読み込み
+?>
+<!DOCTYPE html>
+<html>
+<?php
+    include '../inc/thread_head.php'; // head.php の読み込み
 ?>
 		<style>
 			.red p {
@@ -75,15 +80,12 @@
 		<!-- スレッド一覧内容 -->
 		<?php include '../source/like.php';
 		      include '../source/mute.php';
-		      include '../source/follow.php';
-		      include '../source/block.php';
 		      include '../source/showcontents.php';
-		      
 		      ?>
 			
 	</table>
 	<!--　スレッド表示end -->
-
+	
 	<!--　コメント投稿　-->	
 	
 	<div class="postbox">
