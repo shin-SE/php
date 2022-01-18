@@ -93,8 +93,10 @@
 			<!--log機能12月-->
 			</div>
 			
-			
 			<div class="setting">
+				<div class="upload_01">
+					<a href="upload.php" class="btn btn--green btn--radius">画像変更</a>
+				</div>
 				<div class="followsec">
 					<a href="userlist.php" class="btn btn--green btn--radius">フォロー・ブロック</a>
 				</div>
