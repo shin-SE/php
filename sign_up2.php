@@ -1,7 +1,10 @@
 <?php
 	// エラーを出力する
 	ini_set('display_errors', "On");
-ini_set("auto_detect_line_endings",true);
+    ini_set("auto_detect_line_endings",true);
+    if(!isset($_SESSION['id'])){
+		session_start();
+	}
 	// 読み込む
 	include ('source/dbconnect.php') ;
 	include 'source/inputcheck.php';

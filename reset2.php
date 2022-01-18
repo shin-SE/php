@@ -1,13 +1,17 @@
 <?php
 	// エラーを出力する
-	ini_set('display_errors', "On");ini_set("auto_detect_line_endings",true);
+	ini_set('display_errors', "On");
+	ini_set("auto_detect_line_endings",true);
+	if(!isset($_SESSION['id'])){
+		session_start();
+	}
 
 	// 読み込む
 	include ('source/dbconnect.php') ;
 	include 'source/inputcheck.php';
 
         //データ受け取る
-　　　　$email=$_SESSION['email'];
+     $email=$_SESSION['email'];
 
 	//日本東京タイムゾーン指定
 	date_default_timezone_set("Asia/Kolkata"); 

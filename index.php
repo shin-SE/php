@@ -2,6 +2,9 @@
 	// エラーを出力する
 	ini_set('display_errors', "On");
 	ini_set("auto_detect_line_endings",true);
+    if(!isset($_SESSION['id'])){
+		session_start();
+	}
 	//１ページに表示する件数
 	$no_of_records_per_page = 10;
 	

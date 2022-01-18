@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html>
+
 <?php
-    
+    if(!isset($_SESSION['id'])){
+		session_start();
+	}
     // エラーを出力する
     ini_set('display_errors', "On");
     ini_set("auto_detect_line_endings",true);
@@ -9,8 +10,13 @@
 	$description = '利用規約';
 	$is_home = false; //トップページの判定用の変数
 	$is_snyc = false;//会員登録、ログイン、パスワード変更などの場合だけはtrue
-	include 'inc/head.php'; // head.php の読み込み
+	
 ?>	
+<!DOCTYPE html>
+<html>
+<?php 
+include 'inc/head.php'; // head.php の読み込み
+?>
 	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>	
 <body>

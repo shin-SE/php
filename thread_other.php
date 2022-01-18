@@ -1,7 +1,10 @@
-<html>
 <?php
 // エラーを出力する
 	ini_set('display_errors', "On");
+	ini_set("auto_detect_line_endings",true);
+	if(!isset($_SESSION['id'])){
+		session_start();
+	}
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'スレッドother';
 	$is_home = false; //トップページの判定用の変数
@@ -21,10 +24,13 @@
     include 'source/dbconnect.php';
     $sql = "SELECT* FROM trd WHERE category = 'other' ORDER BY last_post_time desc  LIMIT $offset, $no_of_records_per_page;";
     include 'source/pagging.php';
-	include 'inc/head.php'; // head.php の読み込み
+    include '../source/pagging.php'; 
 ?>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
+<!DOCTYPE html>
+<html>
+<?php
+    include '../inc/thread_head.php'; // head.php の読み込み
+?>
 </head>
 
 <body>

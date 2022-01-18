@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <?php
-ini_set("auto_detect_line_endings",true);
+    ini_set("auto_detect_line_endings",true);
+    if(!isset($_SESSION['id'])){
+		session_start();
+	}
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = '検索結果';
 	$is_home = false; //トップページの判定用の変数

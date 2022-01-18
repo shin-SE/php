@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html>
 <?php
     ini_set('display_errors', "On");
     ini_set("auto_detect_line_endings",true);
+    if(!isset($_SESSION['id'])){
+		session_start();
+	}
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'フォロー管理';
 	$is_home = false; //トップページの判定用の変数
 	$is_snyc = false;//会員登録、ログイン、パスワード変更などの場合だけはtrue
-	include 'inc/head.php'; // head.php の読み込み
 
 	// データベースに接続
 	include('source/dbconnect.php');
-	$conn=mysqli_connect($host,$user,$password,$name);
-?>	
-	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
+	$conn=mysqli_connect($host,$user,$password,$name);    
+?>
+<!DOCTYPE html>
+<html>
+<?php
+    include '../inc/thread_head.php'; // head.php の読み込み
+?>
 </head>
 <body>
 <?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->

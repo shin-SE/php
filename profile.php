@@ -2,7 +2,9 @@
 <?php
     // エラーを出力する
     ini_set('display_errors', "On");
-	
+	    if(!isset($_SESSION['id'])){
+		session_start();
+	}
     // データベースに接続
     include('source/dbconnect.php');
 	$description = 'プロファイル';

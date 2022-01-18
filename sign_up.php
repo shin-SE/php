@@ -2,6 +2,9 @@
    // エラーを出力する
 	ini_set('display_errors', "On");
 	ini_set("auto_detect_line_endings",true);
+	if(!isset($_SESSION['id'])){
+		session_start();
+	}
    //データ受け取る
 	$_SESSION['email'] = $_POST['e_mail'];
     $email=$_SESSION['email'];

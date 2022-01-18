@@ -2,6 +2,9 @@
 // エラーを出力する
 ini_set('display_errors', "On");
 ini_set("auto_detect_line_endings",true);
+    if(!isset($_SESSION['id'])){
+		session_start();
+	}
 //ログインしていればトップページに移動
 
 if (isset($_SESSION['name'])) {
@@ -27,7 +30,7 @@ if (isset($_SESSION['name'])) {
 
     // プリペアドステートメントを作成
     $stmt = $db ->prepare("
-    SELECT * FROM shineva.user_kihon WHERE e_mail=:e_mail AND password=:password
+    SELECT * FROM LAA1387111-shineva.user_kihon  WHERE e_mail=:e_mail AND password=:password
     ");
     
     // print_r($db->errorInfo());

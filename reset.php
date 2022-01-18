@@ -1,6 +1,10 @@
 <?php
 // エラーを出力する
-ini_set('display_errors', "On");ini_set("auto_detect_line_endings",true);
+ini_set('display_errors', "On");
+ini_set("auto_detect_line_endings",true);
+if(!isset($_SESSION['id'])){
+		session_start();
+	}
 $email=$_POST['email'];
 if (isset($_POST['email'] )) {
 	// データベースに接続
