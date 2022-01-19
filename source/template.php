@@ -104,5 +104,5 @@ if (!empty($res_data2)){
 	<?php include '../source/pagechange.php'?>
 
 	<!-- フッター設定 -->
-	<?php include '../inc/footer.php'; ?>
+	<?php include '../inc/thread_footer.php'; ?>
 	<!-- footer.php の読み込み -->
