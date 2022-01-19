@@ -2,7 +2,7 @@
 <?php
 // エラーを出力する
 	ini_set('display_errors', "On");
-      ini_set("auto_detect_line_endings",true);
+	ini_set("auto_detect_line_endings",true);
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'スレッド';
 	$is_home = false; //トップページの判定用の変数
@@ -11,32 +11,32 @@
 	//１ページに表示する件数
 	$no_of_records_per_page = 15;
 	
-    //１ページに表示する件数は当ページで指定
-    if (isset($_GET['pageno'])) {
-        $pageno = $_GET['pageno'];
-    } else {
-        $pageno = 1;
-    }
-
-    $offset = ($pageno-1) * $no_of_records_per_page;
-    // データベース接続
-    include '../source/dbconnect.php';
-        $conn=mysqli_connect($host,$user,$password,$name);
-    $filename= __FILE__;
+	//１ページに表示する件数は当ページで指定
+	if (isset($_GET['pageno'])) {
+		$pageno = $_GET['pageno'];
+	} else {
+		$pageno = 1;
+	}
+	
+	$offset = ($pageno-1) * $no_of_records_per_page;
+	// データベース接続
+	include '../source/dbconnect.php';
+	$conn=mysqli_connect($host,$user,$password,$name);
+	$filename= __FILE__;
 	$newname=substr($filename,-11,7);
 	$tablename="threadno".$newname;
 	$sql = "SELECT * FROM $tablename ORDER BY posttime ASC  LIMIT $offset, $no_of_records_per_page;";
-    include '../source/pagging.php'; 
-    
+	include '../source/pagging.php'; 
+	
 	include '../inc/thread_head.php'; // head.php の読み込み
 ?>
-		<style>
-			.red p {
-				color: #FF0000;
-			}
-		</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
+	<style>
+		.red p {
+			color: #FF0000;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>
 
 <body>
@@ -44,21 +44,21 @@
 <?php include '../inc/thread_header.php'; ?> 
 <!--    ページの計算  pagging.php  の読み込み-->
 <?php 
-	
-    //sql2
-    $newname_int=  (int)$newname;
-    $sql2 = "SELECT * FROM trd WHERE thread_id = $newname_int;";
-    //スレッド名をget ためのSQL実行
-    $res_data2 = mysqli_query($conn,$sql2);
-    if (!empty($res_data2)){
-       $row2 = mysqli_fetch_array($res_data2);
-    }else{
-       echo "スレッド存在しない。";
-    }
+
+//sql2
+$newname_int=  (int)$newname;
+$sql2 = "SELECT * FROM trd WHERE thread_id = $newname_int;";
+//スレッド名をget ためのSQL実行
+$res_data2 = mysqli_query($conn,$sql2);
+if (!empty($res_data2)){
+	$row2 = mysqli_fetch_array($res_data2);
+}else{
+	echo "スレッド存在しない。";
+}
 ?>
 <!-- スレッド表示 -->
 
-		<nav class="crumbs">
+	<nav class="crumbs">
 		<ol>
 			<li class="crumb"><a href="../index.php">Top</a></li>
 			<li class="crumb"><a href="../thread_top.php">Thread_Top</a></li>
@@ -85,14 +85,15 @@
 	
 	<div class="postbox">
 	<p>コメント投稿欄</p>
-	<form action="" method="post">
+	<form action="../source/commenting.php" method="post">
 		<p>ユーザー名:<input <?php if(isset($_SESSION['name'])){echo $_SESSION['name'];} ?> disabled></p>
 		<p>内容:</p>
 		<textarea name="body"></textarea>
 		<p>匿名で投稿する:<input type="checkbox" name="anonymous" value="true"></p>
 		<p><button type="submit" class="<?php if(!isset($_SESSION['name'])){ echo 'disabled'; } ?> btn btn--green btn--radius">書き込む</button></p>
+		<input type="hidden" name="newname" value="<?php echo $newname; ?>">
 	</form>
-	<?php include '../source/commenting.php'?>
+	<?php include '../source/comment.php'?>
 	<!--　スレッド投稿end　-->
 	</div>
 	</article>
@@ -103,5 +104,5 @@
 	<?php include '../source/pagechange.php'?>
 
 	<!-- フッター設定 -->
-	<?php include '../inc/footer.php'; ?>
+	<?php include '../inc/thread_footer.php'; ?>
 	<!-- footer.php の読み込み -->
