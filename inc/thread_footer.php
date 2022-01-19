@@ -19,7 +19,7 @@
 			</div>
 			</div>
 			<small class="cmark">©️copyright 2021
-				<a href="index.php">SIN・SYSTEM ENGINEERS</a>
+				<a href="../index.php">SIN・SYSTEM ENGINEERS</a>
 			</small>
 		</div>
 	</footer>
