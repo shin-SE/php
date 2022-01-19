@@ -42,8 +42,10 @@
 			<li class="crumb">Thread_gourmet</li>
 		</ol>
 	</nav>
-	
 	<article>  
+	<div class="zenny_aside">
+	  <?php include './inc/aside.php'?>
+	</div>
 		<!--スレッド表示   showthreads.php  の読み込み--->
 		<?php include 'source/showthreads.php'?>
 		<a href="index.php#postjump" class="btn btn--green btn--radius">スレッド投稿</a>
