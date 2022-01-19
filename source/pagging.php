@@ -1,7 +1,7 @@
 <?php
 
 
-
+$conn=mysqli_connect($host,$user,$password,$name);
 if (mysqli_connect_errno()){
       echo "データベース接続失敗: " . mysqli_connect_error();
       die();
