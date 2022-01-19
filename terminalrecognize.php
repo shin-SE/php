@@ -1,14 +1,14 @@
 <?php
-// �G���[���o�͂���
+// エラーを出力する
 ini_set('display_errors', "On");
 ini_set("auto_detect_line_endings",true);
     if(!isset($_SESSION['id'])){
 		session_start();
 	}
-//���O�C�����Ă���΃g�b�v�y�[�W�Ɉړ�
+//ログインしていればトップページに移動
 
 if (isset($_SESSION['name'])) {
-  header('Location: index.php');       //���O�C�����Ă��Ȃ��ꍇ
+  header('Location: index.php');       //ログインしていない場合
 }
 ?>
 
@@ -17,42 +17,42 @@ if (isset($_SESSION['name'])) {
 <html>
 <?php
 
-	$title = 'Bullentin board | Sin�ESystem Engineers';
-	$description = '���[���A�h���X�F��';
-	$is_home = false; //�g�b�v�y�[�W�̔���p�̕ϐ�
-	$is_snyc = true;//����o�^�A���O�C���A�p�X���[�h�ύX�Ȃǂ̏ꍇ������true
-	include 'inc/head.php'; // head.php �̓ǂݍ���
+	$title = 'Bullentin board | Sin・System Engineers';
+	$description = 'メールアドレス認証';
+	$is_home = false; //トップページの判定用の変数
+	$is_snyc = true;//会員登録、ログイン、パスワード変更などの場合だけはtrue
+	include 'inc/head.php'; // head.php の読み込み
 
 
 ?>	
-	<!-- ����̃y�[�W�ł̂ݓǂݍ��ރX�^�C���V�[�g�Ȃǂ�����΂����ɒǉ� -->
+	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>
 <body>
-<?php include 'inc/header.php'; ?> <!-- header.php �̓ǂݍ��� -->
- //���[���F��
+<?php include 'inc/header.php'; 
+ //メール認証
 
-      //�l�����R�[�h����
+      //四文字コード生成
       $cryp=random_int(1000,9999);
-      //�T������
+      //５分制限
       setcookie('cryp', $cryp, 60*5, '/');
-      //���[������
+      //メール発送
       include('source/sendmail.php');
       sendmail($_SESSION['email'] ,$cryp);
 
       ?>
-      <label>�F�؃R�[�h����͂��Ă��������B</label>
+      <label>認証コードを入力してください。</label>
       <?php
       if($_COOKIE["cryp"]!=$_POST['crypsecond']){
-      echo'<span color="#FF0000">�F�؎��s���܂����B������x���[�����m�F���Ă��������B\N���[�����͂��ĂȂ����͍Ĕ����{�^���������Ă��������B</span>';
+      echo'<span color="#FF0000">認証失敗しました。もう一度メールを確認してください。\Nメールが届いてない時は再発送ボタンを押してください。</span>';
       }else{
-      //�F�؂ł���
+      //認証できた
       header("location: reset2.php");
       }
       ?>
       <br>
       <input type="text" name="crypsecond" value="" placeholder="code"><br><br>
       <input type="submit"><br><br>
-      <button type="submit">�F�؃R�[�h���m�F</button>
+      <button type="submit">認証コードを確認</button>
 
 
-<?php include 'inc/footer.php'; ?> <!-- footer.php �̓ǂݍ��� -->
+<?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
