@@ -25,12 +25,11 @@
     $conn=mysqli_connect($host,$user,$password,$name);
     $sql = "SELECT* FROM trd  ORDER BY last_post_time desc  LIMIT $offset, $no_of_records_per_page;";
     include 'source/pagging.php';
-    include '../source/pagging.php'; 
 ?>
 <!DOCTYPE html>
 <html>
 <?php
-    include '../inc/thread_head.php'; // head.php の読み込み
+    include 'inc/thread_head.php'; // head.php の読み込み
 ?>
 </head>
 
