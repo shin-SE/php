@@ -1,14 +1,24 @@
-<html>
 <?php
     // エラーを出力する
     ini_set('display_errors', "On");
-	
+	    if(!isset($_SESSION['id'])){
+		session_start();
+	}
     // データベースに接続
     include('source/dbconnect.php');
 	$description = 'プロファイル';
-?>	
-	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
+?>
+<!DOCTYPE html>
+<html>
+<?php
+    $title = 'Bullentin board | Sin・System Engineers';
+	$description = 'プロファイルtest';
+    $is_home = false; //トップページの判定用の変数
+	$is_snyc = false;//会員登録、ログイン、パスワード変更などの場合だけはtrue
+	include ('inc/head.php'); // head.php の読み込み
+?>
 </head>
+
 <body>
 	<?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
 	<nav class="crumbs">
@@ -22,11 +32,7 @@
 	if (!isset($_SESSION['name'])) {
 	header('Location: index.php');
     }else{
-		$title = 'Bullentin board | Sin・System Engineers';
-		$description = 'プロファイルtest';
-		$is_home = false; //トップページの判定用の変数
-		$is_snyc = false;//会員登録、ログイン、パスワード変更などの場合だけはtrue
-		include ('inc/head.php'); // head.php の読み込み
+		
 
 	// データベースに接続
 		include('source/dbconnect.php');
@@ -34,20 +40,17 @@
 	//データ受け取る
 		$id=$_SESSION['id'];
     
-    // var_dump($_SESSION);
-     //var_dump($id);
-    
 	try {
-			$db = new PDO($dsn, $user, $password);
-			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+			$db = new PDO("mysql:host=" . $host. "; dbname=".$name, $user, $password );
+            $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			// プリペアードステートメントを作成
 			$stmt = $db->prepare("
-				SELECT * FROM shineva.pf WHERE user_id=:id
+				SELECT * FROM pf WHERE user_id=:id
 			");
 			
 			$datesql = $db->prepare("
-				SELECT sign_in FROM shineva.user_kihon WHERE user_id=:id
+				SELECT sign_in FROM user_kihon WHERE user_id=:id
 			");
 			
 			// パラメータを割り当て
@@ -90,13 +93,11 @@
 
 
 			<div class="log">
-			<!--log機能12月-->
+			include ('source/accesslog.php');
 			</div>
 			
+			
 			<div class="setting">
-				<div class="upload_01">
-					<a href="upload.php" class="btn btn--green btn--radius">画像変更</a>
-				</div>
 				<div class="followsec">
 					<a href="userlist.php" class="btn btn--green btn--radius">フォロー・ブロック</a>
 				</div>
