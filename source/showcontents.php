@@ -2,8 +2,19 @@
 if (!empty($res_data)){
       while($row = mysqli_fetch_array($res_data)){
             ?>
-             <div class="that">
-            <img src="../profile.png" class="circle">
+            
+            <div class="that">
+            
+            <!--アイコン表示のためデータ取得 -->
+            <?php
+             $id=$row['user_id'];
+             $imgsql = mysqli_prepare( $conn, "SELECT img FROM pf where user_id=$id");
+             mysqli_stmt_execute($imgsql);
+             $img = mysqli_stmt_get_result($imgsql);
+             $img_data = mysqli_fetch_array( $img, MYSQLI_ASSOC); 
+             ?>
+             
+            <img src="../img/<?php echo ($img_data["img"]);?>" class="circle">
                   <div class="it">
                         <!--タイトル-->
                         
