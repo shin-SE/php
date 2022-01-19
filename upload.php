@@ -1,10 +1,17 @@
+<?php
+    ini_set("auto_detect_line_endings",true);
+	if(!isset($_SESSION['id'])){
+		session_start();
+	}
+	$title = 'Bullentin board | Sin・System Engineers';
+	$description = 'アイコン変更';
+	
+?>	
 <!DOCTYPE html>
 <html>
 <?php
-	$title = 'Bullentin board | Sin・System Engineers';
-	$description = 'アイコン変更';
-	include 'inc/head.php'; // head.php の読み込み
-?>	
+include 'inc/head.php'; // head.php の読み込み
+?>
 	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>
 <body>

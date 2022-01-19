@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html>
+
 <?php
     
     // エラーを出力する
     ini_set('display_errors', "On");
-    
+        if(!isset($_SESSION['id'])){
+		session_start();
+	}
 	$title = 'Bullentin board | Sin・System Engineers';
 	$description = 'よくある質問';
 	$is_home = false; //トップページの判定用の変数
 	$is_snyc = false;//会員登録、ログイン、パスワード変更などの場合だけはtrue
-	include 'inc/head.php'; // head.php の読み込み
+	
 ?>	
+<!DOCTYPE html>
+<html>
+<?php
+   include 'inc/head.php'; // head.php の読み込み
+?>
 	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>	
 <body>
