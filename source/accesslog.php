@@ -1,33 +1,32 @@
 <html>
-	
-	<!-- “Á’è‚Ìƒy[ƒW‚Å‚Ì‚İ“Ç‚İ‚ŞƒXƒ^ƒCƒ‹ƒV[ƒg‚È‚Ç‚ª‚ ‚ê‚Î‚±‚±‚É’Ç‰Á -->
+		<!-- ç‰¹å®šã®ãƒšãƒ¼ã‚¸ã§ã®ã¿èª­ã¿è¾¼ã‚€ã‚¹ã‚¿ã‚¤ãƒ«ã‚·ãƒ¼ãƒˆãªã©ãŒã‚ã‚Œã°ã“ã“ã«è¿½åŠ  -->
 </head>
 <body>
-	<?php include 'inc/header.php'; ?> <!-- header.php ‚Ì“Ç‚İ‚İ -->
+	<?php include 'inc/header.php'; ?> <!-- header.php ã®èª­ã¿è¾¼ã¿ -->
 	<?php
-	// ƒGƒ‰[‚ğo—Í‚·‚é
+	// ã‚¨ãƒ©ãƒ¼ã‚’å‡ºåŠ›ã™ã‚‹
     ini_set('display_errors', "On");
 	if (!isset($_SESSION['name'])) {
 	header('Location: index.php');
     }else{
-		$title = 'Bullentin board | SinESystem Engineers';
-	    $description = 'ƒAƒNƒZƒXƒƒO';
-		$is_home = false; //ƒgƒbƒvƒy[ƒW‚Ì”»’è—p‚Ì•Ï”
-		$is_snyc = false;//‰ïˆõ“o˜^AƒƒOƒCƒ“AƒpƒXƒ[ƒh•ÏX‚È‚Ç‚Ìê‡‚¾‚¯‚Ítrue
-		include ('inc/head.php'); // head.php ‚Ì“Ç‚İ‚İ
+		$title = 'Bullentin board | Sinãƒ»System Engineers';
+	    $description = 'ã‚¢ã‚¯ã‚»ã‚¹ãƒ­ã‚°';
+		$is_home = false; //ãƒˆãƒƒãƒ—ãƒšãƒ¼ã‚¸ã®åˆ¤å®šç”¨ã®å¤‰æ•°
+		$is_snyc = false;//ä¼šå“¡ç™»éŒ²ã€ãƒ­ã‚°ã‚¤ãƒ³ã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´ãªã©ã®å ´åˆã ã‘ã¯true
+		include ('inc/head.php'); // head.php ã®èª­ã¿è¾¼ã¿
     }
     
 ?>
 <wrapper>
-<!-- ƒAƒNƒZƒXƒƒO•\¦ -->
+<!-- ã‚¢ã‚¯ã‚»ã‚¹ãƒ­ã‚°è¡¨ç¤º -->
   $address=get_client_ip();
-//ƒRƒ}ƒ“ƒh€”õ
+//ã‚³ãƒãƒ³ãƒ‰æº–å‚™
 
    $cmd=' cat /var/log/httpd/access_log |grep '.$address.'|awk "/\/shinse\/threads\/[0-9]{7}\.php/{ print substr($7,13,20),substr($4,2,20);}" |sort -nr|head 10';
-//ƒRƒ}ƒ“ƒhÀs
+//ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
    $result=shell_exec($cmd);
- //ƒe[ƒuƒ‹-tdƒ^ƒO‚Åo—Í
+ //ãƒ†ãƒ¼ãƒ–ãƒ«-tdã‚¿ã‚°ã§å‡ºåŠ›
    echo "<td>$result</th>";
 
 </wrapper>
-<?php include 'inc/footer.php'; ?> <!-- footer.php ‚Ì“Ç‚İ‚İ -->
+<?php include 'inc/footer.php'; ?> <!-- footer.php ã®èª­ã¿è¾¼ã¿ -->
