@@ -23,13 +23,12 @@
     // データベース接続
     include 'source/dbconnect.php';
     $sql = "SELECT* FROM trd WHERE category = 'sports' ORDER BY last_post_time desc  LIMIT $offset, $no_of_records_per_page;";
-    include 'source/pagging.php';
-    include '../source/pagging.php'; 
+    include 'source/pagging.php'; 
 ?>
 <!DOCTYPE html>
 <html>
 <?php
-    include '../inc/thread_head.php'; // head.php の読み込み
+    include 'inc/head.php'; // head.php の読み込み
 ?>
 </head>
 
