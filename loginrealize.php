@@ -1,5 +1,5 @@
 <?php
-// ƒGƒ‰[‚ğo—Í‚·‚é
+// ã‚¨ãƒ©ãƒ¼ã‚’å‡ºåŠ›ã™ã‚‹
 ini_set('display_errors', "On");
 ini_set("auto_detect_line_endings",true);
 if(!isset($_SESSION['id'])){
@@ -8,65 +8,64 @@ if(!isset($_SESSION['id'])){
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
-    // ƒeJ[ƒ^ƒx[ƒX‚ÉÚ‘±
+    // ãƒ†ã‚›ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã«æ¥ç¶š
     include('dbconnect.php');
     try {
         $db = new PDO("mysql:host=" . $host. "; dbname=".$name, $user, $password );
         $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-        //ƒf[ƒ^‚ğó‚¯æ‚é
+        //ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
         $email=$_POST['email'] ;
         //hash
         $beforehash=$_POST['email'].$_POST['password'];
         $afterhash=hash('sha256', $beforehash);
 
-        // ƒtKƒŠƒwKƒAƒgJƒXƒe[ƒgƒƒ“ƒg‚ğì¬
+        // ãƒ•ã‚œãƒªãƒ˜ã‚œã‚¢ãƒˆã‚›ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’ä½œæˆ
         $stmt = $db ->prepare("
         SELECT * FROM user_kihon WHERE e_mail=:e_mail AND password=:password
         ");
 
 
-        // ƒnKƒ‰ƒ[ƒ^‚ğŠ„‚è“–‚Ä
+        // ãƒã‚œãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å‰²ã‚Šå½“ã¦
         $stmt->bindParam(':e_mail',$email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $afterhash,PDO::PARAM_STR);
         $flagforsql=true;
 
-        //ƒNƒGƒŠ‚ÌÀs
+        //ã‚¯ã‚¨ãƒªã®å®Ÿè¡Œ
         $stmt->execute();
     } catch(PDOException $e){
-        die('ƒGƒ‰[:' . $e->getMessage());
+        die('ã‚¨ãƒ©ãƒ¼:' . $e->getMessage());
     }
 
 
 /**
- * ƒ[ƒ‹”FØ‚È‚µ‚Ì‚¾‚¯Fif($_COOKIE['terminal']==true)
- * ’ÊíFif($_COOKIE['terminal']!=true)
+ * ãƒ¡ãƒ¼ãƒ«èªè¨¼ãªã—ã®æ™‚ã ã‘ï¼šif($_COOKIE['terminal']==true)
+ * é€šå¸¸ï¼šif($_COOKIE['terminal']!=true)
  */
-
     if ($row = $stmt->fetch()){
         $_SESSION['email'] = $_POST['email'];
              
-        if(isset($_COOKIE['terminal'])){      //’[––cookie‘¶İ‚µ‚È‚¢‚Ì‚ÅAƒ[ƒ‹”FØ
+        if(isset($_COOKIE['terminal'])){      //ç«¯æœ«cookieå­˜åœ¨ã—ãªã„ã®ã§ã€ãƒ¡ãƒ¼ãƒ«èªè¨¼
             header('Location: ../terminalrecognize.php');
-        }else{                              //’[––cookie‘¶İ‚µ‚½AƒƒOƒCƒ“¬Œ÷
+        }else{                              //ç«¯æœ«cookieå­˜åœ¨ã—ãŸã€ãƒ­ã‚°ã‚¤ãƒ³æˆåŠŸ
             $_SESSION['id'] = $row['user_id'];
             $_SESSION['name'] = $row['user_name'];
             
-            //90“úŠÔˆê‰ñƒƒOƒCƒ“
+            //90æ—¥é–“ä¸€å›ãƒ­ã‚°ã‚¤ãƒ³
             //setcookie('name', $row['user_name'], 60*60*24*90, '/');
-            //’[––‚ğ¯•Ê‚·‚é‚½‚ß‚É,ˆê”NŠÔ—LŒø
+            //ç«¯æœ«ã‚’è­˜åˆ¥ã™ã‚‹ãŸã‚ã«,ä¸€å¹´é–“æœ‰åŠ¹
             setcookie('terminal', 'true', 60*60*24*365, '/');
             header('Location: ../index.php');
             exit();
         }
       }else{
-          // 1ƒŒƒR[ƒh‚àæ“¾‚Å‚«‚È‚©‚Á‚½‚Æ‚«
-          // ƒ†[ƒU–¼EƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚é‰Â”\«‚ ‚è
-          // ‚à‚¤ˆê“xƒƒOƒCƒ“ƒtƒH[ƒ€‚ğ•\¦
+          // 1ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚‚å–å¾—ã§ããªã‹ã£ãŸã¨ã
+          // ãƒ¦ãƒ¼ã‚¶åãƒ»ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã‚‹å¯èƒ½æ€§ã‚ã‚Š
+          // ã‚‚ã†ä¸€åº¦ãƒ­ã‚°ã‚¤ãƒ³ãƒ•ã‚©ãƒ¼ãƒ ã‚’è¡¨ç¤º
 
           unset($_POST['email']);
           unset($_POST['password']);
-          $acount_alert = "<script type='text/javascript'>alert('ƒAƒJƒEƒ“ƒgî•ñ‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·.');</script>";
+          $acount_alert = "<script type='text/javascript'>alert('ã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±ãŒé–“é•ã£ã¦ã„ã¾ã™.');</script>";
           echo $acount_alert;
           header('Location: ../login.php');
     }
