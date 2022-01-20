@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-    include 'inc/thead.php'; // head.php の読み込み
+    include 'inc/head.php'; // head.php の読み込み
 ?>
 </head>
 
