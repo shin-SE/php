@@ -26,8 +26,6 @@
 	$tablename="threadno".$newname;
 	$sql = "SELECT * FROM $tablename ORDER BY posttime ASC  LIMIT $offset, $no_of_records_per_page;";
 	include '../source/pagging.php'; 
-	
-	include '../source/pagging.php'; 
 ?>
 <!DOCTYPE html>
 <html>
