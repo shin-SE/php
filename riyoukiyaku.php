@@ -1,15 +1,17 @@
+<?php
+    // エラーを出力する
+      ini_set('display_errors', "On");
+      ini_set("auto_detect_line_endings",true);
+      session_start();
+      $title = 'Bullentin board | Sin・System Engineers';
+      $description = '利用規約';
+      $is_home = false; //トップページの判定用の変数
+      $is_snyc = false;//会員登録、ログイン、パスワード変更などの場合だけはtrue
+?>
 <!DOCTYPE html>
 <html>
 <?php
-    
-    // エラーを出力する
-    ini_set('display_errors', "On");
-    ini_set("auto_detect_line_endings",true);
-	$title = 'Bullentin board | Sin・System Engineers';
-	$description = '利用規約';
-	$is_home = false; //トップページの判定用の変数
-	$is_snyc = false;//会員登録、ログイン、パスワード変更などの場合だけはtrue
-	include 'inc/head.php'; // head.php の読み込み
+      include 'inc/head.php'; // head.php の読み込み
 ?>	
 	<!-- 特定のページでのみ読み込むスタイルシートなどがあればここに追加 -->
 </head>	
@@ -139,16 +141,20 @@
         <div class="ri_div">
         <script>
             function validate(){
-            if(!document.getElementById('id-of-checkbox-1').checked){
-                alert('利用規約を確認してください。');
-            }else{
-                window.location.href = 'sign_up2.php';
+                  if(!document.getElementById('id-of-checkbox-1').checked){
+                        alert('Check the box!');
+                        return false;
+                  }
+                  document.location.href='sign_up2.php';
+                  return true;
+                  
             }
         </script>
-        <label id="id-of-checkbox-1"><input type="checkbox" name="terms of service">利用規約を確認しました。</label><br>
+        
         </div>
-        <form class="ri_form" onsubmit="validate();">
-            <button type='submit' value="進む">進む</button>
+        <form method="get" action="sign_up2.php" class="ri_form" onsubmit="return validate();">
+            <input type="checkbox" id="id-of-checkbox-1">利用規約を確認しました。</input><br>
+            <button type=“submit” >進む</button>
         </form>
     </section>
     <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
