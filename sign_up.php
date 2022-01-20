@@ -2,35 +2,50 @@
    // エラーを出力する
 	ini_set('display_errors', "On");
 	ini_set("auto_detect_line_endings",true);
-   //データ受け取る
-	$_SESSION['email'] = $_POST['e_mail'];
-    $email=$_SESSION['email'];
+    echo 'test111';
+	if (!isset($_SESSION['sync'])) {
+           session_start();
+           $_SESSION['sync']=true;
+    }
   //ログインしていればトップページに移動
 	if (isset($_SESSION['name'])) {
-    header('Location: index.php');
+           header('Location: index.php');
 
   //ログインしていない場合
-	}else if (isset($_POST['email'] )) {
-        
-	    // データベースに接続
-		include('source/dbconnect.php');
+	}
+	echo 'test2222';
+	if (isset($_POST['email'] )) {
+           //データ受け取る
+           echo 'test333';
+	       $_SESSION['email'] = $_POST['email'];
+           $email=$_SESSION['email'];
+      	    // データベースに接続
+      		include('source/dbconnect.php');
 
-		$db = new PDO($dsn, $user, $password);
-		$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-		// プリペアドステートメントを作成
-		$stmt = $db->prepare(
-			"SELECT * FROM user_kihon WHERE e_mail = :e_mail"
-		);
-		// パラメータを割り当て
+            try {
+                    $db = new PDO("mysql:host=" . $host. "; dbname=".$name, $user, $password );
+                    $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-		$stmt->bindParam(':e_mail',$email, PDO::PARAM_STR);
-		//クエリの実行
-		try{
-			$stmt->execute();
-		//$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		} catch(PDOException $e){
-			die('エラー:' . $e->getMessage());
-		}
+                    //データを受け取る
+                    $email=$_POST['email'] ;
+                    // フ゜リヘ゜アト゛ステートメントを作成
+                    $stmt = $db->prepare("SELECT * FROM user_kihon WHERE e_mail=:e_mail");
+
+                    // ハ゜ラメータを割り当て
+                    $stmt->bindParam(':e_mail',$email, PDO::PARAM_STR);
+                    $flagforsql=true;
+
+                    //クエリの実行
+                    $stmt->execute();
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    if($result==null){
+                          $flag_nodata=true;
+                       }else if($result!=null){
+                          $flag_nodata=false;
+                       }
+	        }catch(PDOException $e){
+			        die('エラー:' . $e->getMessage());
+		    }
 	}
 			
 ?>
@@ -47,82 +62,54 @@
 </head>	
 <body>
 <?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
-	<nav class="crumbs">
+	<nav class="crumbs">	<!-- ページのナビゲーション -->
 		<ol>
 			<li class="crumb"><a href="index.php">Top</a></li>
-			<li class="crumb">Sign Up</li>
+			<li class="crumb">Thread_Top</li>
 		</ol>
 	</nav>
-	
 	<!-- 認証コード入力設定 -->
 	<section>
-		<form action="" method="post">
-			<label>メールアドレスを入力してください.</label>
-			<?php
-				if($row = $stmt->fetch()){  //stmt成功したら
-					echo '<span color="#FF0000">このメールアドレスは既に登録しています。ログインやパスワード変更に進んでください。</span>';
-				}else{
-					?>
-			<script type="text/javascript">
-				btn.disabled = false; //mailer button tap able
-			</script>
-			<?php
-				}
-			?>
-			<br>
-			<input type="email" name="email" value="" placeholder="xxxx@example.com"><br><br>
-			<input type="submit"><br><br>
-			<input type="button" onclick="sendCode(this)" value="認証コードを送信" />
+			<?php if(isset($_POST['email'])) echo $_POST['email'] ;?>
+			
+    		<form action="" method="post" >
+    			メールアドレスを入力してください.<br>
+    			<input type="email" name="email" value="<?php if(isset($_POST['email'])) echo $_POST['email'] ;?>"><br><br>
+    			<input type="submit" value="認証コードを送信" />
+            </form>
+ 
 
-			<script type="text/javascript">
-				var clock = '';
-				var nums = 60;
-				var btn;
-				function sendCode(thisBtn) {
-					//php
-					<?php 
-					//四文字コード生成
-					$cryp=random_int(1000,9999);
-					//５分制限
-					setcookie('cryp', $cryp, 60*5, '/');
-					//メール発送
-					include('source/sendmail.php');
-					sendmail($_SESSION['email'] ,$cryp);
-					?>
 
-					
-					btn = thisBtn;
-					btn.disabled = true; //button tap disable
-					btn.value = nums + '秒後再発行';
-					clock = setInterval(doLoop, 1000); //カウンター
-
-				}
-				function doLoop() {
-					nums--;
-					if (nums > 0) {
-						btn.value = '(あと'+nums + '秒)';
-					} else {
-						clearInterval(clock); //カウンタークリア
-						btn.disabled = false;
-						btn.value = '再発行';
-						nums = 60; //タイムリセット
-					}
-				}
-				</script>
+       
             <label>認証コードを入力してください。</label>
-				<?php
-					if($_COOKIE["cryp"]!=$_POST['crypsecond']){
-						echo'<span color="#FF0000">認証失敗しました。もう一度メールを確認してください。\Nメールが届いてない時は再発送ボタンを押してください。</span>';
-					}else{
-						//認証できた
-						header("location: riyoukiyaku.php");
-					}
+				<?php 
+				     if(isset($_POST['email'])){
+			               if(isset($flag_nodata)&& $flag_nodata==true){
+                 					//四文字コード生成
+                 					$cryp=random_int(1000,9999);
+                 					echo $cryp;
+                 					//５分制限
+                 					setcookie('cryp', $cryp, 60*5, '/');
+                 					//メール発送
+                 					include('source/sendmail.php');
+         					}else if(isset($flag_nodata)&& $flag_nodata==false){
+         					        echo 'このメールアドレスは既に登録していました。';
+         					        unset($_POST['email']);
+				        }
+            				if(isset($_POST['crypsecond'])){
+            					if($_COOKIE["cryp"]!=$_POST['crypsecond']){
+            						  echo'<span color="#FF0000">認証失敗しました。もう一度メールを確認してください。\Nメールが届いてない時は再発送ボタンを押してください。</span>';
+            					}else if($_COOKIE["cryp"]==$_POST['crypsecond']){
+            						  //認証できた
+            						  header("location: riyoukiyaku.php");
+            					}
+            				}
+            		}
 				?>
 			<br>
-			<input type="text" name="crypsecond" value="" placeholder="code"><br><br>
+		<form action="" method="post">
+			<input type="text" name="crypsecond" value=""><br><br>
 			<input type="submit"><br><br>
-			<button type="submit">認証コードを確認</button>
         </form>
 	</section>
-				</div>
 <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
