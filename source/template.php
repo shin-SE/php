@@ -77,6 +77,8 @@ if (!empty($res_data2)){
 		<!-- スレッド一覧内容 -->
 		<?php include '../source/like.php';
 		      include '../source/mute.php';
+		      include '../source/block.php';
+		      include '../source/follow.php';
 		      include '../source/showcontents.php';
 		      ?>
 			
