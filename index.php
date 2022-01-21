@@ -2,7 +2,7 @@
 	// エラーを出力する
 	ini_set('display_errors', "On");
 	ini_set("auto_detect_line_endings",true);
-        if(!isset($_SESSION['id'])){
+    if(!isset($_SESSION['id'])){
 		session_start();
 	}
 	//１ページに表示する件数
