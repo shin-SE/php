@@ -37,24 +37,23 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         die('エラー:' . $e->getMessage());
     }
 
-
-/**
- * メール認証なしの時だけ：if($_COOKIE['terminal']==true)
- * 通常：if($_COOKIE['terminal']!=true)
- */
     if ($row = $stmt->fetch()){
-        $_SESSION['email'] = $_POST['email'];
+        
              
-        if(isset($_COOKIE['terminal'])){      //端末cookie存在しないので、メール認証
+        if(!isset($_COOKIE['terminal'])){      //端末cookie存在しないので、メール認証
+            $_SESSION['email_temp'] = $_POST['email'];
+            $_SESSION['id_temp'] = $row['user_id'];
+            $_SESSION['name_temp'] = $row['user_name'];
             header('Location: ../terminalrecognize.php');
         }else{                              //端末cookie存在した、ログイン成功
+            $_SESSION['email'] = $_POST['email'];
             $_SESSION['id'] = $row['user_id'];
             $_SESSION['name'] = $row['user_name'];
             
             //90日間一回ログイン
             //setcookie('name', $row['user_name'], 60*60*24*90, '/');
-            //端末を識別するために,一年間有効
-            setcookie('terminal', 'true', 60*60*24*365, '/');
+            //端末を識別するために,5日間有効
+            setcookie('terminal', 'true', 60*60*24*5, '/');
             header('Location: ../index.php');
             exit();
         }
@@ -65,8 +64,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
           unset($_POST['email']);
           unset($_POST['password']);
-          $acount_alert = "<script type='text/javascript'>alert('アカウント情報が間違っています.');</script>";
-          echo $acount_alert;
           header('Location: ../login.php');
     }
 }
