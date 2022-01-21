@@ -2,12 +2,14 @@
    // エラーを出力する
 	ini_set('display_errors', "On");
 	ini_set("auto_detect_line_endings",true);
-     
+      
 	if (!isset($_SESSION['sync'])) {
            session_start();
            $_SESSION['sync']=true;
     }
-
+    if(isset($_POST['crypsecond'])){
+      echo $_POST['crypsecond'];
+}
   //ログインしていればトップページに移動
 	if (isset($_SESSION['name'])) {
            header('Location: index.php');
@@ -53,11 +55,13 @@
                         //５分制限
                         //setcookie('cryp', $cryp, 60*5, '/');
                         //メール発送
+                        $SUBJECT = "shinseへようこそ!";
                         include('source/sendmail.php');
                         
             }else if(isset($flag_nodata)&& $flag_nodata==false){
-                        echo 'このメールアドレスは既に登録していました。';
+                        ?>このメールアドレスは既に登録していました。 <a href="reset.php">パスワードを忘れた</a><?php
                         unset($_POST['email']);
+                        
             }
             
 	}
