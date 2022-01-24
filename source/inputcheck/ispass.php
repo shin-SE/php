@@ -1,11 +1,14 @@
 <?php
 function passwordlegal($pwd){
-    $pattern= '^[0-9a-zA-Z]{8, 16}$'; // 正規表現
+    $pattern= '/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,16}+\z/'; // 正規表現
     if(preg_match($pattern,$pwd)){
-        $is_pass=true;
-        return '<span color="#008000">✓</span>';
+        $is_pass = true;
+        return array($is_pass);
+        //return '<span color="#008000">✓</span>';
     }else{
-        return '<span color="#FF0000">パスワードは8-16文字の長さの英文字及び数字の組合せ。記号使用できない。</span>';
+        $is_pass = false;
+        $is_pass_error= "<script type='text/javascript'>alert('パスワードは8-16文字の長さの英文字及び数字の組合せ。記号使用できない。');</script>";
+        return array($is_pass, $is_pass_error);
     }
 }
 /**
@@ -15,4 +18,3 @@ function passwordlegal($pwd){
  *[0-9A-Za-z] {8,16} 由 8-16 位数字或这字母组成
  *$ 匹配行结尾位置
  */
-?>
