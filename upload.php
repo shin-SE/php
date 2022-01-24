@@ -72,7 +72,9 @@ include 'inc/head.php'; // head.php の読み込み
                 exit();
                 print_r($stmt -> errorInfo());
             } else {
-                $message = '画像ファイルではありません';
+                unlink($file);
+                $message = "<script type='text/javascript'>alert('画像ファイルではありません');</script>";
+                echo $message;
             }
         }
     }
