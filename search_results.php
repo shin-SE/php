@@ -25,7 +25,9 @@ ini_set("auto_detect_line_endings",true);
 	</nav>
 		
 	<section>
-		<h1>Search results</h1>
+		<div class="zenny">
+			<h1>Search results</h1>
+		</div>
 	</section>
 	<?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
 </body>

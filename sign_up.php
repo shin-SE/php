@@ -7,9 +7,7 @@
            session_start();
            $_SESSION['sync']=true;
     }
-    if(isset($_POST['crypsecond'])){
-      echo $_POST['crypsecond'];
-}
+
   //ログインしていればトップページに移動
 	if (isset($_SESSION['name'])) {
            header('Location: index.php');
