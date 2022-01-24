@@ -30,6 +30,7 @@
 <?php
     include 'inc/head.php'; // head.php の読み込み
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -44,14 +45,11 @@
 	</nav>
 	
 	<article>  
-	<div class="zenny_aside">
-	  <?php include './inc/aside.php'?>
-	</div>
 		<!--スレッド表示   showthreads.php  の読み込み--->
 		<?php include 'source/showthreads.php'?>
 		<a href="index.php#postjump" class="btn btn--green btn--radius">スレッド投稿</a>
 	</article>
-
+    <?php include './inc/aside.php'?>
     <!--ページングボタン     pagechange.php の読み込み  -->
 	<?php include 'source/pagechange.php'?>
 	

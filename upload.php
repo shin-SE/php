@@ -16,6 +16,7 @@ include 'inc/head.php'; // head.php の読み込み
 </head>
 <body>
     <?php include 'inc/header.php'; ?><!-- header.php の読み込み -->
+    <div id="particles-js"></div>
     <nav class="crumbs">
 		<ol>
 			<li class="crumb"><a href="index.php">Top</a></li>
@@ -26,11 +27,16 @@ include 'inc/head.php'; // head.php の読み込み
     <section class="up01">
         <h1>画像アップロード</h1>
         <!--送信ボタンが押された場合-->
+        <?php if (isset($_POST['upload'])): ?>
+        <p><?php echo $message; ?></p>
+        <?php else: ?>
         <form method="post" enctype="multipart/form-data">
             <input type="file" name="image">
             <button><input type="submit" name="upload" value="変更"></button>
         </form>
     </section>
+<?php endif;?>
+<div class="border"></div>
 <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->
 
 
@@ -60,14 +66,13 @@ include 'inc/head.php'; // head.php の読み込み
             if (exif_imagetype($file)) {//画像ファイルかのチェック
                 $message = '画像を変更しました';
                 $stmt->execute();
-                 print_r($stmt -> errorInfo());
-                 
+                
                 //プロファイルへ
                 header('Location: profile.php');
                 exit();
+                print_r($stmt -> errorInfo());
             } else {
-                $message = "<script type='text/javascript'>alert('画像ファイルではありません');</script>";
-                echo $message;
+                $message = '画像ファイルではありません';
             }
         }
     }
@@ -77,5 +82,4 @@ include 'inc/head.php'; // head.php の読み込み
      //var_dump($_SESSION);
      //var_dump($id);  
 ?>
-
 

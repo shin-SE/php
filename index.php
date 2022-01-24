@@ -34,15 +34,17 @@
 </head>
 <body>
 	<?php include 'inc/header.php'; ?> <!-- header.php の読み込み -->
-	
+	<div id="splash">
+	<div id="splash_text"></div>
+	<div class="loader_cover loader_cover-up"></div><!--上に上がるエリア-->
+	<div class="loader_cover loader_cover-down"></div><!--下に下がるエリア-->
+<!--/splash--></div>
 	<nav class="crumbs">
 		<!-- ページのナビゲーション-->
 		<ol>
 			<li class="crumb">Top</li>
 		</ol>
 	</nav>
-	
-	<div class="float_box-wrap">
 		<div class="indexbody">
 			<article>
 				<div class="zenny_aside">
@@ -91,5 +93,4 @@
 				</div>
 			</article>	
 		</div>
-	</div>
 <?php include 'inc/footer.php'; ?> <!-- footer.php の読み込み -->

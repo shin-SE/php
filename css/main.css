@@ -1,6 +1,16 @@
 @charset "utf-8";
 
 /** ------ 全体 ------ **/
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-track{
+  background-color: #333;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 5px;
+}
 html, body {
   height            : 100%;
   margin            : 0%;
@@ -51,6 +61,23 @@ section{
   box-sizing        : border-box;
   /*横幅の解釈をpadding, borderまでとする*/
 }
+.border{
+  border-bottom     : 1px solid #c0c0c0;
+  margin: 10px;
+}
+.resetbody{ 
+  position          : relative;
+  width             : 100%;
+  height            : 100%;
+  z-index           : 1;
+}
+#particles-js{
+  position          : fixed;
+  z-index           : -1;
+  width             : 100%;
+  height            : 100%;
+  background        : #333;
+}
 /** ------ その他 end ------ **/
 
 
@@ -82,7 +109,7 @@ textarea {
 .postbox{
   /*新規スレッド投稿エリア*/
   position          : relative;
-  right: 40px;
+  right             : 40px;
   width             : 100%;
   padding           : 15px 40px;
   background-color  :#424242;
@@ -259,6 +286,9 @@ nav.crumbs{
   flex-direction    : column;
   min-height        : 130vh;
   position          : relative;
+  width             : 100%;
+  height            : 100%;
+  z-index           : 1;
 }
 .topbody{ 
 /* display          : flex; */
@@ -315,6 +345,12 @@ wrapper{
 	margin-bottom     : -70px;
   /* フッタの高さと等しいネガティブマージン */
 	/* また最後の子要素の潜在的なマージンとしても機能 */
+}
+.profilebody{ 
+  position          : relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 /** ------ profile.php end ------ **/
 
@@ -388,11 +424,58 @@ wrapper{
 
 
 
+/** ------ form.php ------**/
+.form_01{
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+  min-height: 100vh;
+}
+.form_01 h2{
+  font-size: 30px;
+}
+.form_01 label{
+  font-size: 17px;
+}
+.form_01 div{
+  margin-bottom: 10px;
+}
+.form_01 span{
+  display: inline-block;
+  position: relative;
+  background-color: red;
+  border-radius: 5px;
+}
+.btn_form{
+  text-align: center;
+  background-color: #00ff7f;
+  border-radius: 1000px;
+  width: 500px;
+  margin: 0 auto;
+}
+.btnform{
+  background-color: #00ff7f;
+  border: #00ff7f;
+}
+.btn_form .btn{
+  color: white;
+}
+.btn_form :hover{
+  color: deeppink;
+}
+.form_xx{
+  margin: 0 auto;
+  text-align: center;
+}
+/** ------ form.php  end ------**/
+
+
+
 /** ------ header ------**/
 header {
   width             : 100%;
   height            : 100px;
-  margin-bottom     : -60px;
+  margin-bottom     : 0px;
   background        : #333;
   padding           : 20px 50px;
   box-sizing        : border-box;
@@ -400,7 +483,7 @@ header {
   top               : 0;
   left              : 0;
   display           : flex;
-  z-index           : 9999;
+  z-index           : 999;
 }
 label{
 	color             : white;
@@ -440,6 +523,9 @@ footer {
   font-size         : 20px;
   bottom            : 0;
   clear             : both;
+}
+.trd_footer{
+  position: relative;
 }
 .foot-wrap {
   background-color  : #333;
@@ -500,9 +586,9 @@ footer {
 .profile{
   position          : relative;
   padding-top       : 60px;
-  background-color  : #333;
+  background-color  : none;
   color             : white;
-  width             : 50%;
+  width             : 40%;
   margin            : 0 auto;
 }
 .profile.details{
@@ -613,7 +699,7 @@ a.btn--radius {
 position            : fixed;
 width               : 100%;
 height              : 100%;
-z-index             : 999;
+z-index             : 9999;
 text-align          :center;
 color               :#fff;
 }
@@ -622,7 +708,7 @@ color               :#fff;
 position            : absolute;
 top                 : 50%;
 left                : 50%;
-  z-index           : 999;
+  z-index           : 9999;
 transform           : translate(-50%, -50%);
 color               : #fff;
 width               : 100%;
