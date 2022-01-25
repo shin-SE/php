@@ -99,12 +99,6 @@ include 'inc/head.php'; // head.php の読み込み
 		<li class="crumb">Sign Up2</li>
 	</ol>
 </nav>
-<?php
-var_dump($is_comp[0]);
-var_dump($passwordlegal[0]);
-var_dump($namelegal[0]);
-var_dump(ctype_space($user_name));
-?>
 <section>
 	<form action="" method="post">
 		<!--ニックネーム入力-->
