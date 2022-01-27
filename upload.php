@@ -68,14 +68,13 @@ include 'inc/head.php'; // head.php の読み込み
 
 
         if (!empty($_FILES['image']['name'])) { //ファイルが選択されていれば$imageにファイル名を代入
-            move_uploaded_file($_FILES['image']['tmp_name'], './img/' . $image); //imagesディレクトリにファイル保存
-            //クエリの実行
-            $stmt2->execute();
-            if (exif_imagetype($file)) { //画像ファイルかのチェック
+            if (exif_imagetype($_FILES['image']['tmp_name'])) { //画像ファイルかのチェック
+                move_uploaded_file($_FILES['image']['tmp_name'], './img/' . $image); //imagesディレクトリにファイル保存
+                //クエリの実行
+                $stmt2->execute();
                 $message = '画像を変更しました';
                 //クエリの実行
                 $stmt->execute();
-
 
                 //前のアイコンを削除
                 $beforeimg = $stmt2->fetch(PDO::FETCH_COLUMN);
@@ -84,11 +83,10 @@ include 'inc/head.php'; // head.php の読み込み
                     unlink($beforefile);
                 }
                 //プロファイルへ
+                print_r($stmt->errorInfo());
                 header('Location: profile.php');
                 exit();
-                print_r($stmt->errorInfo());
             } else {
-                unlink($file);
                 $message = "<script type='text/javascript'>alert('画像ファイルではありません');</script>";
                 echo $message;
             }
