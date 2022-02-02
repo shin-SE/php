@@ -446,6 +446,11 @@ wrapper{
   background-color: red;
   border-radius: 5px;
 }
+.form_01 div p {
+  background-color: rgba(33, 37, 41, 0.4);
+  border-radius: 3px;
+  padding: 3px;
+}
 .btn_form{
   text-align: center;
   background-color: #00ff7f;
